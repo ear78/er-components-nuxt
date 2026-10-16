@@ -1,0 +1,11 @@
+<template>
+  <div>
+    team building
+  </div>
+</template>
+
+<script setup lang="ts">
+
+</script>
+
+<style scoped></style>
