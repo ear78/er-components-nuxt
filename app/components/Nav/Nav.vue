@@ -1,42 +1,65 @@
 <template>
-  <div :class="`NavContainer ${globalStore.isDarkMode ? 'Dark' : ''}`">
-    <NuxtLink class="ImgWrapper transition duration-500 ease-in-out" href="/"
-      @click="resetPageLoad">
+  <div :class="`NavContainer ${globalStore.isDarkMode ? 'Dark' : ''} border-b border-gray-200 mb-10`">
+    <NuxtLink
+      class="ImgWrapper transition duration-500 ease-in-out"
+      href="/"
+      @click="resetPageLoad"
+    >
       <img :src="logo" alt="ER Logo" />
     </NuxtLink>
-    <Hamburger :isActive="isMenuActive" @hamburger-click="handleToggle"
-      :isDarkMode="globalStore.isDarkMode" />
+    <Hamburger
+      :isActive="isMenuActive"
+      @hamburger-click="handleToggle"
+      :isDarkMode="globalStore.isDarkMode"
+    />
     <!-- Desktop Menu -->
-    <nav class="NavDesktop">
+    <div class="NavDesktop">
       <ul>
-        <li v-for="(item, i) in navMenu" :key="item.text" :style="{
-          transitionDelay:
-            `${0 * i}ms`,
-        }">
-          <NuxtLink :to="item.route" :class="`Link
-            ${pathname.path === item.route ? 'selected' : ''}`" @click="
-              resetPageLoad">
+        <li
+          v-for="(item, i) in navMenu"
+          :key="item.text"
+          :style="{
+            transitionDelay: `${0 * i}ms`,
+          }"
+        >
+          <NuxtLink
+            :to="item.route"
+            :class="`Link
+            ${pathname.path === item.route ? 'selected' : ''}`"
+            @click="resetPageLoad"
+          >
             {{ item.text }}
           </NuxtLink>
         </li>
       </ul>
-    </nav>
+    </div>
 
     <!-- Mobile Menu -->
-    <nav :class="`NavMobile ${isActive}`">
+    <div :class="`NavMobile ${isActive}`">
       <ul>
-        <li v-for="(item, i) in navMenu" key={item.text} :class="`${isActive}`"
-          :style="{ transitionDelay: `${40 * i}ms`, }">
-          <NuxtLink :href="item.route" :class="`Link transition
-            duration-100 ease-in-out ${pathname.path === item.route ? 'selected'
-              : ''}`" @click="resetPageLoad">
+        <li
+          v-for="(item, i) in navMenu"
+          key="{item.text}"
+          :class="`${isActive}`"
+          :style="{ transitionDelay: `${40 * i}ms` }"
+        >
+          <NuxtLink
+            :href="item.route"
+            :class="`Link transition
+            duration-100 ease-in-out ${
+              pathname.path === item.route ? 'selected' : ''
+            }`"
+            @click="resetPageLoad"
+          >
             {{ item.text }}
           </NuxtLink>
         </li>
       </ul>
-    </nav>
-    <DarkModeButton :isDarkMode="globalStore.isDarkMode"
-      @dark-mode-click="handleDarkMode" />
+    </div>
+    <DarkModeButton
+      :isDarkMode="globalStore.isDarkMode"
+      @dark-mode-click="handleDarkMode"
+    />
   </div>
 </template>
 
@@ -81,11 +104,11 @@ const navMenu = [
   },
 ];
 
-const globalStore = useGlobalStore()
+const globalStore = useGlobalStore();
 const isMenuActive = ref(false);
 const pathname = useRoute();
 
-const isActive = computed(() => isMenuActive.value ? 'isActive' : '');
+const isActive = computed(() => (isMenuActive.value ? 'isActive' : ''));
 
 const handleToggle = () => {
   isMenuActive.value = !isMenuActive.value;
@@ -99,7 +122,6 @@ const resetPageLoad = () => {
   // resetAppLoading();
   isMenuActive.value = false;
 };
-
 </script>
 
 <style scoped>
@@ -191,7 +213,7 @@ const resetPageLoad = () => {
       list-style-type: none;
       transform: translateY(-40%);
       opacity: 0;
-      transition: all .3s ease-in-out;
+      transition: all 0.3s ease-in-out;
 
       &.isActive {
         opacity: 1;
@@ -220,7 +242,7 @@ const resetPageLoad = () => {
   .NavMobile.isActive {
     opacity: 1;
     z-index: 10;
-    transition: opacity .3s ease;
+    transition: opacity 0.3s ease;
   }
 
   @media (orientation: landscape) {
@@ -230,7 +252,7 @@ const resetPageLoad = () => {
     }
   }
 
-  @media(min-width: 1024px) {
+  @media (min-width: 1024px) {
     .NavDesktop {
       display: block;
     }

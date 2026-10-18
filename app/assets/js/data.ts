@@ -13,12 +13,12 @@ import stripesSml from '@/assets/img/stripes-sml.jpg';
 import chairsSml from '@/assets/img/chairs-sml.jpg';
 import portfolio11 from '@/assets/img/UserMale.svg';
 import portfolio12 from '@/assets/img/femaleUser.svg';
-import PageBanner from '@/assets/img/pagebanner-screenshot.webp';
-import HoverPods from '@/assets/img/hoverpods-screenshot.webp';
-import TeamBuilding from '@/assets/img/teambuilding-screenshot.webp';
-import HappyDots from '@/assets/img/happydots-screenshot.webp';
-import Dropper from '@/assets/img/dropper-screenshot.webp';
-import EasySlider from '@/assets/img/easyslider-screenshot.webp';
+import PageBanner from '/img/pagebanner-screenshot.webp';
+import HoverPods from '/img/hoverpods-screenshot.webp';
+import TeamBuilding from '/img/teambuilding-screenshot.webp';
+import HappyDots from '/img/happydots-screenshot.webp';
+import Dropper from '/img/dropper-screenshot.webp';
+import EasySlider from '/img/easyslider-screenshot.webp';
 import pinkBuildingWebp from '@/assets/img/pinkBuilding.webp';
 import pinkBuildingWebpSm from '@/assets/img/pinkBuilding-sm.webp';
 import pinkBuildingJpg from '@/assets/img/pinkBuilding.jpg';
@@ -132,31 +132,31 @@ export const podData = [
 
 export const happyData = [
   {
-    id: 'test',
+    id: 0,
     text: 'Market Place',
     lineColor: '#fff',
     dotColor: '',
   },
   {
-    id: 'test1',
+    id: 1,
     text: 'Collective',
     lineColor: '#fff',
     dotColor: '',
   },
   {
-    id: 'test2',
+    id: 2,
     text: 'Attribution',
     lineColor: '#fff',
     dotColor: '',
   },
   {
-    id: 'test3',
+    id: 3,
     text: 'SmartLink',
     lineColor: '#fff',
     dotColor: '',
   },
   {
-    id: 'test4',
+    id: 4,
     text: 'User Experience',
     lineColor: '#fff',
     dotColor: '',

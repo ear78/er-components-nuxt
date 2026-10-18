@@ -44,6 +44,9 @@
   --font-weight-semibold: 500;
   --font-weight-bold: 700;
 
+  /* Transitions */
+  --transition-medium: all 0.3s ease;
+  
   /* UI Styles */
   --border: 1px solid var(--gray-200);
   --box-shadow-md: 0 4px 10px rgba(0, 0, 0, .1);

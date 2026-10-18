@@ -1,21 +1,32 @@
 <template>
-  <section :key="data.id" :ref="`section-highlight-${data.id}`"
-    :class="`flex flex-col ${alternatingSides} ${isStacked}`">
+  <section
+    :key="data.id"
+    :ref="`section-highlight-${data.id}`"
+    :class="`flex flex-col ${alternatingSides} ${isStacked}`"
+  >
     <div class="w-full md:w-1/2">
       <NuxtImg
         :class="`object-cover aspect-3/2 md:aspect-square lg:aspect-3/2 ${imageRadiused}`"
-        :loading="`${index <= 1 ? 'eager' : 'lazy'}`" :src="data.img"
-        format="webp" :alt="`${data?.title?.text ?? ''}`" width="800"
-        height="600" />
+        :loading="`${index <= 1 ? 'eager' : 'lazy'}`"
+        :src="data.img"
+        format="webp"
+        :alt="`${data?.title?.text ?? ''}`"
+        width="800"
+        height="600"
+      />
     </div>
     <div
-      :class="`flex flex-col justify-center w-full md:w-1/2 space-y-3 p-9 bg-neutral-100 dark:bg-neutral-900 transition duration-500 ease-in-out ${boxRadiused}`">
+      :class="`flex flex-col justify-center w-full md:w-1/2 space-y-3 p-9 bg-neutral-100 dark:bg-neutral-900 transition duration-500 ease-in-out ${boxRadiused}`"
+    >
       <Heading v-if="data?.title?.text" :variant="data?.title?.variant ?? ''">
         {{ data?.title?.text }}
       </Heading>
       <p v-if="data.text">{{ data.text }}</p>
-      <Button v-if="data.button" :href="data.button.href"
-        :target="data.button.target ? true : false">
+      <Button
+        v-if="data.button"
+        :href="data.button.href"
+        :target="data.button.target ? true : false"
+      >
         {{ data.button.text }}
       </Button>
     </div>
@@ -23,7 +34,6 @@
 </template>
 
 <script setup lang="ts">
-
 const props = defineProps<{
   data: {
     id: number | string;
