@@ -1,15 +1,22 @@
-// interface Components {
-//   id: number;
-//   component: string;
-//   path: string;
-//   description: string;
-//   settings: Record<string, unknown>;
-// }
+interface Components {
+  id: number;
+  component: string;
+  path: string;
+  description: string;
+  settings: Record<string, unknown>;
+}
+
+interface ComponentSettings extends Record<string, unknown> {
+  id?: number;
+}
 
 export const useGlobalStore = defineStore('globalStore', {
   state: () => ({
     isDarkMode: false,
     isAppLoading: false,
+    isModalActive: false,
+    isDrawerOpen: false,
+    componentId: 0,
     components: [
       {
         id: 0,
@@ -88,11 +95,15 @@ export const useGlobalStore = defineStore('globalStore', {
           id: 5,
         },
       },
-    ],
+    ] as Components[],
   }),
-  // actions: {
-  //   setDarkMode(){
-  //     this.isDarkMode =
-  //   }
-  // },
+  actions: {
+    setComponentSettings(settings: ComponentSettings) {
+      const found = this.components.find((item) => item.id === settings.id);
+      if (found) {
+        found.settings = settings;
+      }
+    },
+    setFormData() {},
+  },
 });

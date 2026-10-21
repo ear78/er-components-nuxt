@@ -31,11 +31,11 @@
         alt="Easy Slider Component"
       /> -->
       
+      <!-- height="700" -->
       <NuxtImg
         :src="data.img"
         :alt="data.title"
         width="2100"
-        height="700"
         className="rounded-lg shadow-xl"
       />
     </div>

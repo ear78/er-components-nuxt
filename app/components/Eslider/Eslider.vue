@@ -79,12 +79,6 @@ const isPrevBtnDisabled = ref(false);
 const isNextBtnDisabled = ref(false);
 const currentSlide = ref(0);
 
-// Create refs for the slides
-// const scrollRefs = useRef<any>(
-//   Array.from({ length: data?.length }).map(() => createRef()),
-// );
-
-onMounted(() => console.log(scrollContainerRef.value, scrollRefs.value));
 const isLastSlide = (data: typeof props.data, index: number) => {
   return data?.length - 1 === index ? '0' : '2%';
 };

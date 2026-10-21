@@ -81,6 +81,7 @@ const handleScrollTo = (v?: HTMLElement | null) => {
     &:hover {
       cursor: pointer;
       background: var(--color-white) !important; /* Override css in js*/
+      color: var(--color-white);
     }
 
     &:hover .Text {
