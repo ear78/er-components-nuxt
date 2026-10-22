@@ -1,5 +1,5 @@
 <template>
-  <component :is="variant || 'h3'" class="Typography">
+  <component :is="variant || 'h3'" :style="{...sx}" class="Typography">
     <slot />
   </component>
 </template>
