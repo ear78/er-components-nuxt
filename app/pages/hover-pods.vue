@@ -1,10 +1,13 @@
 <template>
   <section :class="`HoverPodsView ${globalStore.isDarkMode ? 'Dark' : ''}`">
     <PageTitle title="HoverPods" />
-    <!-- hoverColor={pageSettings.settings.hoverColor}
-      isSquared={pageSettings.settings.isSquared}
-      openTab={pageSettings.settings.openTab} -->
-    <HoverPods :delay="100" :podData="podData" />
+    <HoverPods
+      :delay="100"
+      :podData="podData"
+      :is-squared="pageSettings?.settings.isSquared"
+      :hover-color="pageSettings?.settings.hoverColor"
+      :open-tab="pageSettings?.settings.openTab"
+    />
   </section>
 </template>
 
@@ -13,6 +16,8 @@ import { useGlobalStore } from '@/stores/global';
 import { podData } from '~/assets/js/data';
 
 const globalStore = useGlobalStore();
+const pageSettings = globalStore.components[1];
+
 // const pageSettings = usePageSettings(forms, 1);
 </script>
 

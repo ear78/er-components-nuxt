@@ -158,22 +158,34 @@ export default AppForm; -->
               :name="d.name"
               :check="d.inputVal"
               :value="d.inputVal"
+              v-model="d.inputVal"
+              @change="$emit('changeEvent', $event)"
             />
             {{ d.labelText }}
             <span class="checkmark"></span>
           </label>
         </div>
-        <div v-else-if="d.inputType === 'radio'">
-          <label class="container">
+        <div
+          v-else-if="d.inputType === 'radio'"
+          class="radio-group flex flex-wrap gap-1"
+        >
+          <legend class="w-full">{{ d.labelText }}</legend>
+          <label
+            v-for="item in d.radioGroup"
+            class="flex items-center gap-2 pr-4 first-of-type:pl-1"
+            :for="item"
+            :key="item"
+          >
             <input
               type="radio"
-              :id="d.name"
+              :id="item"
               :name="d.name"
-              :check="d.inputVal"
-              :value="d.inputVal"
+              v-model="d.inputVal"
+              :value="item"
+              class="appearance-none w-4 h-4 bg-neutral-300 outline-2 outline-neutral-300 border-2 border-white rounded-full checked:bg-pink-500 checked:outline-pink-500 focus-visible:bg-pink-500 focus-visible:outline-blue-700"
+              @change="$emit('changeEvent', $event)"
             />
-            {{ d.labelText }}
-            <span class="checkmark"></span>
+            {{ item }}
           </label>
         </div>
         <div v-else-if="d.inputType === 'color'" class="relative">
@@ -187,7 +199,7 @@ export default AppForm; -->
             type="color"
             :id="`outlined-${d.name}`"
             :value="d.inputVal"
-            @change="emit('changeEvent')"
+            @change="$emit('changeEvent', $event)"
             :name="d.name"
             class="border border-gray-300 rounded-md p-2 text-sm w-full h-10 mb-4 hover:border-gray-900"
           />
@@ -203,7 +215,7 @@ export default AppForm; -->
             type="text"
             :id="`outlined-${d.name}`"
             :value="stripHtmlTags(d.inputVal)"
-            @change="$emit('changeEvent')"
+            @change="$emit('changeEvent', $event)"
             :name="d.name"
             class="border border-gray-300 rounded-md p-2 text-sm w-full mb-4 hover:border-gray-900"
           />
@@ -224,6 +236,7 @@ const props = defineProps<{
   isDarkMode: boolean;
 }>();
 const emit = defineEmits(['formSubmit', 'changeEvent']);
+const radioModel = defineModel('radioModel');
 
 const stripHtmlTags = (str: string | boolean | undefined) =>
   String(str ?? '').replace(/<\/?[^>]+(>|$)/g, '');

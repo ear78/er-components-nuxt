@@ -73,6 +73,7 @@ export default HoverPods; -->
 </template>
 
 <script setup lang="ts">
+import { useLoadingIndicator } from '#app';
 import { podData } from '~/assets/js/data';
 
 interface Props {
@@ -90,7 +91,8 @@ const props = withDefaults(defineProps<Props>(), {
   delay: 0,
 });
 
-const isLoading = ref(false);
+const { isLoading, start } = useLoadingIndicator();
+start({ force: true });
 const hoverPodSquared = computed(() => (props.isSquared ? 'Squared' : ''));
 </script>
 

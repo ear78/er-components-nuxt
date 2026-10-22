@@ -5,6 +5,9 @@ export default defineNuxtConfig({
   modules: ['@nuxt/image', '@pinia/nuxt'],
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
+  },
   css: ['~/assets/css/main.css'],
   vite: {
     optimizeDeps: {

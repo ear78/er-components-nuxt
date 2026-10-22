@@ -53,7 +53,6 @@ const globalStore = useGlobalStore();
 //     };
 //   });
 // });
-
 const selectedFormData = computed(() => {
   if (
     !componentFormData ||
@@ -64,6 +63,8 @@ const selectedFormData = computed(() => {
   if (path === '/dashboard') {
     return componentFormData['/dashboard']?.[globalStore.componentId];
   }
+  // console.log('post', componentFormData[path]);
+
   return componentFormData[path] ?? null;
 });
 
@@ -79,3 +80,15 @@ const handleModalToggle = () => {
   globalStore.isModalActive = !globalStore.isModalActive;
 };
 </script>
+
+<style>
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  /* filter: blur(8px); */
+}
+</style>

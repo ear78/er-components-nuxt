@@ -3,7 +3,7 @@
     <template v-if="altLayout">
       <div
         v-for="(member, i) in teamMembers"
-        key="{member.id}"
+        :key="member.id"
         :style="{ transitionDelay: `${delay * i}ms` }"
         :class="`Member TC ${!isLoading ? 'fadeIn' : ''}`"
       >
@@ -74,6 +74,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import logo from '@/assets/img/er-logo.svg';
 import { teamMembers } from '~/assets/js/data';
+import { useLoadingIndicator } from '#app';
 
 interface TeamCardProps {
   delay?: number;
@@ -87,7 +88,8 @@ const props = withDefaults(defineProps<TeamCardProps>(), {
   isDarkMode: false,
 });
 
-const isLoading = ref(false);
+const { isLoading, start } = useLoadingIndicator();
+start({ force: true });
 </script>
 
 <style scoped>

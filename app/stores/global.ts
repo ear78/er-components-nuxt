@@ -1,13 +1,31 @@
-interface Components {
+export interface ComponentSettings {
+  [key: string]: unknown;
+  id: number;
+  preTitle?: string;
+  title?: string;
+  subTitle?: string;
+  btnText?: string;
+  ctaUrl?: string;
+  btnColor?: string;
+  overlay?: boolean;
+  overlayDark?: boolean;
+  overlayFull?: boolean;
+  textAlign?: 'left' | 'center' | 'right';
+  showBtn?: boolean;
+  hoverColor?: string;
+  isSquared?: boolean;
+  openTab?: boolean;
+  altLayout?: boolean;
+  dotColor?: string;
+  textColor?: string;
+}
+
+interface Component {
   id: number;
   component: string;
   path: string;
   description: string;
-  settings: Record<string, unknown>;
-}
-
-interface ComponentSettings extends Record<string, unknown> {
-  id?: number;
+  settings: ComponentSettings;
 }
 
 export const useGlobalStore = defineStore('globalStore', {
@@ -95,13 +113,15 @@ export const useGlobalStore = defineStore('globalStore', {
           id: 5,
         },
       },
-    ] as Components[],
+    ] as Component[],
   }),
   actions: {
-    setComponentSettings(settings: ComponentSettings) {
+    setComponentSettings(settings: Partial<ComponentSettings>) {
+      console.log('settings global',settings);
+
       const found = this.components.find((item) => item.id === settings.id);
       if (found) {
-        found.settings = settings;
+        Object.assign(found.settings, settings);
       }
     },
     setFormData() {},

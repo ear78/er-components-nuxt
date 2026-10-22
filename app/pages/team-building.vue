@@ -28,7 +28,11 @@ function TeamBuilding() {
   <div :class="`TeamBuilding ${globalStore.isDarkMode ? 'Dark' : ''}`">
     <PageTitle title="TeamBuilding" />
     <!-- altLayout="{pageSettings.settings.altLayout}" -->
-    <TeamCard :delay="100" :isDarkMode="globalStore.isDarkMode" />
+    <TeamCard
+      :delay="100"
+      :isDarkMode="globalStore.isDarkMode"
+      :alt-layout="pageSettings?.settings.altLayout"
+    />
   </div>
 </template>
 
@@ -36,6 +40,7 @@ function TeamBuilding() {
 import { useGlobalStore } from '@/stores/global';
 
 const globalStore = useGlobalStore();
+const pageSettings = globalStore.components[2];
 
 </script>
 

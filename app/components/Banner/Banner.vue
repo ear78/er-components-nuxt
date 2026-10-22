@@ -17,7 +17,7 @@
         :class="`Image ${isImageLoaded && !isLoading ? 'ImageLoaded' : ''}`"
         :src="bannerImg"
         :alt="bannerTitle"
-        @load="() => isImageLoaded = true"
+        @load="() => (isImageLoaded = true)"
         loading="lazy"
         decoding="async"
         :width="2000"
@@ -53,9 +53,9 @@ const props = defineProps<{
   /** Custom color of the button */
   btnColor?: string;
   /** Text displayed on the button */
-  btnText: string;
+  btnText?: string;
   /** URL for the call to action */
-  ctaUrl: string;
+  ctaUrl?: string;
   /** Pre title text */
   preTitle?: string;
   /** Whether to show overlay */
@@ -83,7 +83,7 @@ const props = defineProps<{
 }>();
 const isImageLoaded = ref(false);
 
-const bannerBtnColor = props.btnColor || '';
+const bannerBtnColor = computed(() => props.btnColor || '');
 const bannerOverlay = computed(() => (props.overlay ? '' : 'OverlayNone'));
 const bannerOverlayDark = computed(() => (props.overlayDark ? 'Dark' : ''));
 const bannerOverlayFull = computed(() => (props.overlayFull ? 'Full' : ''));
@@ -100,20 +100,24 @@ const bannerTextAlign = computed(() => {
 const bannerTextColor = computed(() =>
   props.textColor === 'dark' ? 'DarkText' : '',
 );
-const bannerImg = props.bgImage?.length ? props.bgImage : undefined;
-const bannerPreTitle = !props.preTitle
-  ? 'Welcome to Page Banner'
-  : props.preTitle;
-const bannerTitle = !props.title ? 'Page Banner' : props.title;
-const bannerSubTitle = !props.subTitle
-  ? 'Banners to help your site look great!'
-  : props.subTitle;
-const bannerBtnText = !props.btnText ? 'Kontakt' : props.btnText;
+const bannerImg = computed(() =>
+  props.bgImage?.length ? props.bgImage : undefined,
+);
+const bannerPreTitle = computed(() =>
+  !props.preTitle ? 'Welcome to Page Banner' : props.preTitle,
+);
+const bannerTitle = computed(() =>
+  !props.title ? 'Page Banner' : props.title,
+);
+const bannerSubTitle = computed(() =>
+  !props.subTitle ? 'Banners to help your site look great!' : props.subTitle,
+);
+const bannerBtnText = computed(() =>
+  !props.btnText ? 'Kontakt' : props.btnText,
+);
 </script>
 
 <style scoped>
-/* @use '../../assets/scss/_variables.scss'; */
-
 .BackgroundImg {
   position: relative;
   background: var(--banner-bg-color, var(--gray-500));
@@ -226,52 +230,5 @@ const bannerBtnText = !props.btnText ? 'Kontakt' : props.btnText;
 .SubTitle.DarkText,
 .Title.DarkText {
   color: var(--primary-color);
-}
-
-.Button {
-  /* @include variables.button; */
-  background: var(--seconday-color);
-  color: var(--white);
-  border: none;
-  text-transform: uppercase;
-  font-weight: 600;
-  padding: 0;
-  font-size: 0.7rem;
-  border-radius: 25px;
-  transition: all 0.3s ease;
-  display: inline-block;
-
-  &:hover {
-    background: rgba(0, 0, 0, 0.9) !important;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  }
-
-  a {
-    display: flex;
-    padding: 14px 34px;
-    line-height: 1;
-    text-decoration: none;
-    color: var(--white);
-    width: auto;
-    margin: 0;
-    transform: translateX(6px);
-    transition: all 0.4s ease;
-  }
-
-  &:hover a {
-    transform: translateX(0px);
-  }
-
-  .Arrow {
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.4s ease;
-  }
-
-  &:hover .Arrow {
-    visibility: visible;
-    opacity: 1;
-    transform: translateX(8px);
-  }
 }
 </style>
