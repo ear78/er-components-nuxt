@@ -10,7 +10,10 @@
     <template v-for="(d, i) in data" :key="d.id">
       <li
         @click="handleScrollTo(refs?.[i])"
-        :style="{ background: dotColor, color: textColor }"
+        :style="{
+          background: dotColor,
+          color: textColor,
+        }"
         class="HoverItem"
       >
         <div class="Line" />
@@ -35,6 +38,7 @@ const props = defineProps<{
   refs?: (HTMLElement | null | undefined)[] | null;
 }>();
 
+const dotColorRef = ref(props.dotColor);
 const handleScrollTo = (v?: HTMLElement | null) => {
   if (!v) return;
 
@@ -131,7 +135,7 @@ const handleScrollTo = (v?: HTMLElement | null) => {
       height: 12px;
       width: 12px;
       background-color: var(--color-white);
-      border: 1px solid var(--color-pink-500);
+      border: 1px solid v-bind('dotColorRef');
       border-radius: 50%;
       display: inline-block;
       z-index: -1;
