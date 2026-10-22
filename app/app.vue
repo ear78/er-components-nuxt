@@ -15,12 +15,14 @@
     </main>
     <Footer />
     <BackToTopButton />
-    <Drawer
-      :is-open="globalStore.isModalActive"
-      @close-event="handleModalToggle"
-    >
-      <ComponentSettings :form-data="drawerFormData" />
-    </Drawer>
+    <ClientOnly>
+      <Drawer
+        :is-open="globalStore.isModalActive"
+        @close-event="handleModalToggle"
+      >
+        <ComponentSettings :form-data="drawerFormData" />
+      </Drawer>
+    </ClientOnly>
   </div>
 </template>
 
@@ -35,24 +37,6 @@ import { formData as componentFormData } from '@/assets/js/formData';
 const location = useRoute();
 const globalStore = useGlobalStore();
 
-// watchEffect(() => {
-//   if (!dashboardFormData || Array.isArray(dashboardFormData)) return;
-
-//   const selectedFields = dashboardFormData[componentId.value] ?? [];
-//   selectedSettings.value = components[componentId.value]?.settings ?? {};
-
-//   formData.value = selectedFields.map((field) => {
-//     const setting = selectedSettings.value[field.name];
-
-//     return {
-//       ...field,
-//       inputVal:
-//         typeof setting === 'string' || typeof setting === 'boolean'
-//           ? setting
-//           : (field.inputVal ?? ''),
-//     };
-//   });
-// });
 const selectedFormData = computed(() => {
   if (
     !componentFormData ||
@@ -63,8 +47,6 @@ const selectedFormData = computed(() => {
   if (path === '/dashboard') {
     return componentFormData['/dashboard']?.[globalStore.componentId];
   }
-  // console.log('post', componentFormData[path]);
-
   return componentFormData[path] ?? null;
 });
 
@@ -73,8 +55,6 @@ const hasFormData = computed(() => Array.isArray(selectedFormData.value));
 const drawerFormData = computed(() => {
   return Array.isArray(selectedFormData.value) ? selectedFormData.value : null;
 });
-
-// console.log('drawerFormDta:', selectedFormData.value);
 
 const handleModalToggle = () => {
   globalStore.isModalActive = !globalStore.isModalActive;
@@ -89,6 +69,5 @@ const handleModalToggle = () => {
 .page-enter-from,
 .page-leave-to {
   opacity: 0;
-  /* filter: blur(8px); */
 }
 </style>

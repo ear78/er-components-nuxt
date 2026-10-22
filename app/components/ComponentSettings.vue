@@ -37,6 +37,14 @@ const globalStore = useGlobalStore();
 const location = useRoute();
 
 const activeComponent = computed(() => {
+  if (location.path === '/dashboard') {
+    /** Lookup component by Id for the dashboard.
+     * Other components use the router since they are dynamically route based in the app.
+     */
+    return globalStore.components.find(
+      (item) => item.id === globalStore.componentId,
+    );
+  }
   return globalStore.components.find(
     (item: any) => item.path === location.path,
   );
