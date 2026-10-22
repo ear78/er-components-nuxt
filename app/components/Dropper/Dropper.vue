@@ -38,7 +38,7 @@ const handleToggle = () => (isToggled.value = !isToggled.value);
 
   &.Dark {
     .DropperHeader {
-      background: var(--black);
+      background: var(--color-neutral-900);
       color: var(--white);
       border: 1px solid transparent;
 

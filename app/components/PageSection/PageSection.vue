@@ -13,6 +13,7 @@
         {{ data.description }}
       </p>
       <Button
+        :is-dark-mode="globalStore.isDarkMode"
         tertiary
         center
         :sx="{ margin: 'auto auto 35px' }"
@@ -21,7 +22,7 @@
       >
         Go To Component
       </Button>
-      
+
       <!-- <img
         className="rounded-lg shadow-xl"
         loading="lazy"
@@ -30,7 +31,7 @@
         :src="data.img"
         alt="Easy Slider Component"
       /> -->
-      
+
       <!-- height="700" -->
       <NuxtImg
         :src="data.img"
@@ -44,6 +45,8 @@
 
 <script setup lang="ts">
 import Button from '@/components/Button/Button.vue';
+import { useGlobalStore } from '@/stores/global';
+
 interface Props {
   setThreshold?: number;
   setMarginOffset?: string;
@@ -60,11 +63,11 @@ const props = withDefaults(defineProps<Props>(), {
   setThreshold: 0.3,
   setMarginOffset: '0',
 });
+
+const globalStore = useGlobalStore();
 const resetAppLoading = () => console.log('apploading pagesection');
 const isIntersecting = ref(false);
 const pageSectionRef = useTemplateRef('pageSection');
-// Convert image handling
-const imageURL = computed(() => new URL(props.data.img, import.meta.url)).value.href;
 
 watch(pageSectionRef, () => {
   const options = {

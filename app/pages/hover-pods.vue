@@ -1,5 +1,7 @@
 <template>
-  <section :class="`HoverPodsView ${globalStore.isDarkMode ? 'Dark' : ''} min-h-dvh md:min-h-87 lg:min-h-100`">
+  <section
+    :class="`HoverPodsView transition duration-500 ${globalStore.isDarkMode ? 'Dark' : ''} min-h-dvh md:min-h-87 lg:min-h-100 rounded-lg`"
+  >
     <PageTitle title="HoverPods" />
     <ClientOnly>
       <HoverPods
@@ -25,7 +27,6 @@ const pageSettings = globalStore.components[1];
 .HoverPodsView {
   background: var(--gray-100);
   padding: 40px 0 75px;
-  border-radius: var(--gray-200);
   position: relative;
 
   &.Dark {

@@ -8,7 +8,7 @@
         :class="`Member TC ${!isLoading ? 'fadeIn' : ''}`"
       >
         <div
-          :class="`MemberHoverTrigger AltLayout ${isDarkMode ? 'Dark' : ''}`"
+          :class="`MemberHoverTrigger AltLayout ${isDarkMode ? 'Dark' : ''} transition duration-500`"
         >
           <div class="AltLayoutLeft">
             <img class="Image" :src="member.image" :alt="member.name" />
@@ -41,7 +41,9 @@
         :style="{ transitionDelay: `${delay * i}ms` }"
         :class="`Member TC ${!isLoading ? 'fadeIn' : ''}`"
       >
-        <div :class="`MemberHoverTrigger ${isDarkMode ? 'Dark' : ''}`">
+        <div
+          :class="`MemberHoverTrigger ${isDarkMode ? 'Dark' : ''} transition duration-500`"
+        >
           <img class="Image" :src="member.image" :alt="member.name" />
           <h3 :class="`Name ${isDarkMode ? 'Dark' : ''}`">
             {{ member.name }}
@@ -123,7 +125,8 @@ onMounted(() => {
       position: relative;
       transition:
         transform 0.2s ease 0ms,
-        border-color 0.2s ease 0ms;
+        border-color 0.2s ease 0ms,
+        background 0.5s ease 0ms;
       border: var(--border);
       padding: 20px;
       border-radius: 8px;

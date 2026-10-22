@@ -294,16 +294,6 @@ const resetSlider = () => {
       transform: translateX(0);
     }
   }
-
-  @keyframes blurred {
-    from {
-      filter: blur(8px);
-    }
-
-    to {
-      filter: blur(0);
-    }
-  }
 }
 
 .SlideBtns {
@@ -324,7 +314,7 @@ const resetSlider = () => {
     justify-content: center;
     align-items: center;
     background: #efefef;
-    transition: all .2s ease;
+    transition: all 0.2s ease;
 
     @media (hover: hover) {
       &:hover:not(:disabled) {
@@ -375,6 +365,16 @@ const resetSlider = () => {
   &:active,
   &.ActiveDot {
     background: var(--secondary-color);
+  }
+}
+
+@keyframes blurred {
+  from {
+    filter: blur(8px);
+  }
+
+  to {
+    filter: blur(0);
   }
 }
 </style>

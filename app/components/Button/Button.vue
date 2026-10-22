@@ -1,6 +1,10 @@
 <template>
-  <button type="button" @click="$emit('btnClick')" :style="{ ...sx }"
-    :class="`Button ${primaryClass} ${secondaryClass} ${tertiaryClass} ${centeredClass} w-fit`">
+  <button
+    type="button"
+    @click="$emit('btnClick')"
+    :style="{ ...sx }"
+    :class="`Button ${primaryClass} ${secondaryClass} ${tertiaryClass} ${centeredClass} w-fit ${isDarkMode ? 'Dark' : ''}`"
+  >
     <a :href="href" :target="isTarget" rel="noreferrer">
       <slot />
       <FontAwesomeIcon class="Arrow" :icon="faArrowRight" />
@@ -9,10 +13,11 @@
 </template>
 
 <script setup lang="ts">
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const props = defineProps<{
+  isDarkMode?: boolean;
   href?: string;
   primary?: boolean;
   secondary?: boolean;
@@ -20,15 +25,15 @@ const props = defineProps<{
   target?: boolean;
   center?: boolean;
   sx?: Object | null;
-}>()
+}>();
 
 defineEmits(['btnClick']);
 
-const primaryClass = computed(() => props.primary ? 'Primary' : '');
-const secondaryClass = computed(() => props.secondary ? 'Secondary' : '');
-const tertiaryClass = computed(() => props.tertiary ? 'Tertiary' : '');
-const centeredClass = computed(() => props.center ? 'ButtonCenter' : '');
-const isTarget = computed(() => props.target ? '_blank' : '');
+const primaryClass = computed(() => (props.primary ? 'Primary' : ''));
+const secondaryClass = computed(() => (props.secondary ? 'Secondary' : ''));
+const tertiaryClass = computed(() => (props.tertiary ? 'Tertiary' : ''));
+const centeredClass = computed(() => (props.center ? 'ButtonCenter' : ''));
+const isTarget = computed(() => (props.target ? '_blank' : ''));
 </script>
 
 <style scoped>
@@ -92,9 +97,9 @@ const isTarget = computed(() => props.target ? '_blank' : '');
     }
   }
 
-  @media (hover:hover) {
+  @media (hover: hover) {
     &:hover {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     &:hover a {
@@ -124,6 +129,14 @@ const isTarget = computed(() => props.target ? '_blank' : '');
         background: color-mix(in srgb, var(--tertiary-color) 90%, white 10%);
       }
     }
+  }
+
+  &.Primary.Dark {
+    background: var(--color-neutral-900, var(--black));
+  }
+
+  &.Tertiary.Dark {
+    background: var(--color-neutral-900, var(--black));
   }
 }
 </style>

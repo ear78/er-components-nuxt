@@ -1,28 +1,30 @@
 <template>
   <div
-    :class="`transition duration-500 ease-in-out font-avenir max-w-7xl mx-auto px-2 md:px-4 ${globalStore.isDarkMode ? 'dark' : ''} dark:bg-black dark:text-white`"
+    :class="`transition duration-500 ease-in-out ${globalStore.isDarkMode ? 'dark' : ''} dark:bg-black dark:text-white`"
   >
-    <Nav />
-    <main class="relative min-h-[calc(100dvh-277px)]">
-      <button
-        v-if="hasFormData"
-        @click="handleModalToggle"
-        class="cursor-pointer -top-8 absolute"
-      >
-        <FontAwesomeIcon :icon="faGrip" />
-      </button>
-      <NuxtPage />
-    </main>
-    <Footer />
-    <BackToTopButton />
-    <ClientOnly>
-      <Drawer
-        :is-open="globalStore.isModalActive"
-        @close-event="handleModalToggle"
-      >
-        <ComponentSettings :form-data="drawerFormData" />
-      </Drawer>
-    </ClientOnly>
+    <div class="`font-avenir max-w-7xl mx-auto px-2 md:px-4 `">
+      <Nav />
+      <main class="relative min-h-[calc(100dvh-277px)]">
+        <button
+          v-if="hasFormData"
+          @click="handleModalToggle"
+          class="cursor-pointer -top-8 absolute"
+        >
+          <FontAwesomeIcon :icon="faGrip" />
+        </button>
+        <NuxtPage />
+      </main>
+      <Footer />
+      <BackToTopButton />
+      <ClientOnly>
+        <Drawer
+          :is-open="globalStore.isModalActive"
+          @close-event="handleModalToggle"
+        >
+          <ComponentSettings :form-data="drawerFormData" />
+        </Drawer>
+      </ClientOnly>
+    </div>
   </div>
 </template>
 

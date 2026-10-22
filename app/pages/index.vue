@@ -3,7 +3,7 @@
     <section
       class="flex flex-col-reverse gap-4 HomeContainer md:grid grid-cols-2"
     >
-      <div class="Left">
+      <div class="Left transition duration-500">
         <span>Welcome to ER Components! </span>
         {{ homeData.desc }}
         &nbsp;
@@ -37,13 +37,6 @@ const globalStore = useGlobalStore();
 .HomeContainer {
   line-height: 1.5;
   box-sizing: border-box;
-
-  &.Dark {
-    .Left {
-      background: var(--gray-800);
-      border-color: transparent;
-    }
-  }
 
   .Left {
     margin: 0 0 1rem;
@@ -103,6 +96,13 @@ const globalStore = useGlobalStore();
   &.Active {
     opacity: 1;
     transform: translate3d(0, 0px, 0);
+  }
+}
+
+.Dark {
+  .Left {
+    background: var(--gray-800);
+    border-color: transparent;
   }
 }
 </style>
