@@ -1,72 +1,3 @@
-<!-- import { useEffect, useState } from 'react';
-import styles from '@/components/User/User.module.scss';
-
-type GitData = {
-  avatar_url: string;
-  bio: string;
-  login: string;
-  name: string;
-  type: string;
-};
-
-function User({ profileId = 'ear78' }: { profileId?: string }) {
-  const [userDataReady, setUserDataReady] = useState(false);
-  const [gitData, setGitData] = useState<any>({} as GitData);
-
-  useEffect((): void => {
-    try {
-      const fetchData = async () => {
-        const response = await fetch(
-          `https://api.github.com/users/${profileId}`,
-          {
-            headers: {
-              accept: 'application/vnd.github.v3+json',
-            },
-          },
-        );
-
-        const data = await response.json();
-        setGitData(data);
-        setUserDataReady(true);
-      };
-      fetchData();
-      return undefined;
-    } catch (err) {
-      return console.error(
-        `Something went wrong with fetching the data ${err}`,
-      );
-    }
-  }, [userDataReady]);
-
-  return (
-    <>
-      {!userDataReady && (
-        <div
-          className={`${styles.UserSkeleton} ${!userDataReady ? styles.FadeIn : styles.UserTransition}`}
-        >
-          <p className={styles.Image} />
-          <p className={styles.Name} />
-          <p className={styles.Username} />
-          <p className={styles.Description} />
-        </div>
-      )}
-      <section
-        className={`${styles.User} ${styles.UserTransition} ${userDataReady ? styles.FadeIn : ''}`}
-      >
-        <img
-          src={gitData.avatar_url}
-          alt={`${gitData.type} ${gitData.login}`}
-        />
-        <h3 className={styles.Name}>{gitData.name}</h3>
-        <p className={styles.Username}>{gitData.login}</p>
-        <p className={styles.UserDescription}>{gitData.bio}</p>
-      </section>
-    </>
-  );
-}
-
-export default User; -->
-
 <template>
   <div :class="`UserSkeleton ${!userDataReady ? 'FadeIn' : 'UserTransition'}`">
     <p class="Image" />
@@ -85,10 +16,12 @@ export default User; -->
 <script setup lang="ts">
 interface UserProps {
   profileId?: string;
+  delay?: number;
 }
 
 const props = withDefaults(defineProps<UserProps>(), {
   profileId: 'ear78',
+  delay: 500,
 });
 
 interface GitData {
@@ -116,10 +49,11 @@ onMounted(() => {
 
       const data = await response.json();
       if (data) {
+        // delayed to improved UX loading
         setTimeout(() => {
           gitData.value = data;
           userDataReady.value = true;
-        }, 0);
+        }, props.delay);
       }
     };
     fetchData();

@@ -1,27 +1,27 @@
 <template>
-  <section
-    :class="`flex flex-col-reverse gap-4 HomeContainer md:grid grid-cols-2 ${globalStore.isDarkMode ? 'Dark' : ''}`"
-  >
-    <div class="Left">
-      <span>Welcome to ER Components! </span>
-      {{ homeData.desc }}
-      &nbsp;
-      <span>{{ homeData.components }}</span>
-    </div>
-    <div class="Right">
-      <div class="HomeTitle">ER</div>
-      <PageTitle title="Components" />
-    </div>
-  </section>
-  <!-- Scroll into view sections -->
-  <!-- <ClientOnly> -->
-  <PageSection
-    v-for="section in pageSectionData"
-    :key="section.id"
-    :data="section"
-    :set-threshold="0.2"
-  />
-  <!-- </ClientOnly> -->
+  <div :class="`${globalStore.isDarkMode ? 'Dark' : ''}`">
+    <section
+      class="flex flex-col-reverse gap-4 HomeContainer md:grid grid-cols-2"
+    >
+      <div class="Left">
+        <span>Welcome to ER Components! </span>
+        {{ homeData.desc }}
+        &nbsp;
+        <span>{{ homeData.components }}</span>
+      </div>
+      <div class="Right">
+        <div class="HomeTitle">ER</div>
+        <PageTitle title="Components" />
+      </div>
+    </section>
+    <!-- Scroll into view sections -->
+    <PageSection
+      v-for="section in pageSectionData"
+      :key="section.id"
+      :data="section"
+      :set-threshold="0.2"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">

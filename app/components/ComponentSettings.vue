@@ -9,7 +9,6 @@
     <AppForm
       form-ref="componentSettingsForm"
       @change-event="updateSettings($event)"
-      @form-submit="handleSettingsSave"
       :formData="resolvedFormData ?? []"
       :isDarkMode="globalStore.isDarkMode"
     />
@@ -46,25 +45,10 @@ const activeComponent = computed(() => {
 const settings = computed<Partial<ComponentSettings>>(
   () => activeComponent.value?.settings ?? {},
 );
-// watch(
-//   () => location.path,
-//   () => {
-//     console.log('logging', location.path, activeComponent.value, settings.value);
-//   },
-// );
-// console.log('active settings', settings, location, activeComponent.value);
+
 const resolvedFormData = computed(() =>
   props.formData
     ? props.formData.map((field) => {
-        // console.log('field:', field, 'settings:', settings.value);
-        // if (field.inputType === 'radio') {
-        //   const selected = field.radioGroup?.find(
-        //     (radio) => radio === settings.value.textAlign,
-        //   );
-        //   return {
-        //     ...field,
-        //   };
-        // }
         return {
           ...field,
           inputVal: settings.value[field.name] ?? field.inputVal ?? '',
@@ -74,22 +58,11 @@ const resolvedFormData = computed(() =>
 );
 
 const updateSettings = (event: any) => {
-  // console.log(event);
-
   const formObj = handleForm(event);
-  // console.log('update setting', formObj, 'active settings', settings.value);
 
   globalStore.setComponentSettings({
     ...settings.value,
     ...formObj,
   });
 };
-
-const handleSettingsSave = (event: Event) => {
-  event.preventDefault();
-  globalStore.setComponentSettings({ ...settings });
-  globalStore.isDrawerOpen = false;
-};
 </script>
-
-<style scoped></style>

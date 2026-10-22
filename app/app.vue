@@ -3,7 +3,7 @@
     :class="`transition duration-500 ease-in-out font-avenir max-w-7xl mx-auto px-2 md:px-4 ${globalStore.isDarkMode ? 'dark' : ''} dark:bg-black dark:text-white`"
   >
     <Nav />
-    <main class="relative">
+    <main class="relative min-h-[calc(100dvh-277px)]">
       <button
         v-if="hasFormData"
         @click="handleModalToggle"

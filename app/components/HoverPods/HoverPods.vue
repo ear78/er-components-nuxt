@@ -73,7 +73,6 @@ export default HoverPods; -->
 </template>
 
 <script setup lang="ts">
-import { useLoadingIndicator } from '#app';
 import { podData } from '~/assets/js/data';
 
 interface Props {
@@ -91,9 +90,15 @@ const props = withDefaults(defineProps<Props>(), {
   delay: 0,
 });
 
-const { isLoading, start } = useLoadingIndicator();
-start({ force: true });
+const isLoading = ref(true);
 const hoverPodSquared = computed(() => (props.isSquared ? 'Squared' : ''));
+
+onMounted(() => {
+  /** Page loading delay using client only to keep hydration mismatches in sync. */
+  setTimeout(() => {
+    isLoading.value = false;
+  }, 10);
+});
 </script>
 
 <style scoped>

@@ -88,8 +88,13 @@ const props = withDefaults(defineProps<TeamCardProps>(), {
   isDarkMode: false,
 });
 
-const { isLoading, start } = useLoadingIndicator();
-start({ force: true });
+const isLoading = ref(true);
+onMounted(() => {
+  /** Page loading delay using client only to keep hydration mismatches in sync. */
+  setTimeout(() => {
+    isLoading.value = false;
+  }, 10);
+});
 </script>
 
 <style scoped>

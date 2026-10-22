@@ -117,8 +117,6 @@ export const useGlobalStore = defineStore('globalStore', {
   }),
   actions: {
     setComponentSettings(settings: Partial<ComponentSettings>) {
-      console.log('settings global',settings);
-
       const found = this.components.find((item) => item.id === settings.id);
       if (found) {
         Object.assign(found.settings, settings);
