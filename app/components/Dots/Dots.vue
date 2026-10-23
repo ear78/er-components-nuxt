@@ -38,7 +38,7 @@ const props = defineProps<{
   refs?: (HTMLElement | null | undefined)[] | null;
 }>();
 
-const dotColorRef = ref(props.dotColor);
+const dotColorRef = computed(() => props.dotColor);
 const handleScrollTo = (v?: HTMLElement | null) => {
   if (!v) return;
 
