@@ -172,7 +172,7 @@ const resetPageLoad = () => {
    -----------------------------------------*/
   .NavMobile {
     display: block;
-    visibility: visible;
+    visibility: hidden;
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -226,6 +226,7 @@ const resetPageLoad = () => {
   }
 
   .NavMobile.isActive {
+    visibility: visible;
     opacity: 1;
     z-index: 10;
     transition: opacity 0.3s ease;
