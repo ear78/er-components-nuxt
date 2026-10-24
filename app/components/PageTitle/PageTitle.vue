@@ -1,7 +1,7 @@
 <template>
   <h1
     :style="{ ...color }"
-    :class="`text-center rounded-lg font-normal text-md
+    :class="`text-center rounded-lg font-normal text-sm md:text-base
     uppercase tracking-(--page-title-tracking) ${alternateStyle}
     dark:text-pink-600 transition duration-500`"
   >
