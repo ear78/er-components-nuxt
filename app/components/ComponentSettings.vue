@@ -21,6 +21,7 @@ import { useGlobalStore } from '@/stores/global';
 import type { ComponentSettings } from '@/stores/global';
 import { handleForm } from '~/assets/js/util/helpers';
 import type { FormField } from '@/assets/js/formData';
+import { PathName } from '~/assets/js/constants';
 
 const props = withDefaults(
   defineProps<{
@@ -37,7 +38,7 @@ const globalStore = useGlobalStore();
 const location = useRoute();
 
 const activeComponent = computed(() => {
-  if (location.path === '/dashboard') {
+  if (location.path === PathName.DASHBOARD) {
     /** Lookup component by Id for the dashboard.
      * Other components use the router since they are dynamically route based in the app.
      */

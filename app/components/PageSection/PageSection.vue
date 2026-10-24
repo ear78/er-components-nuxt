@@ -17,22 +17,10 @@
         tertiary
         center
         :sx="{ margin: 'auto auto 35px' }"
-        @click="resetAppLoading"
         :href="data.page"
       >
         Go To Component
       </Button>
-
-      <!-- <img
-        className="rounded-lg shadow-xl"
-        loading="lazy"
-        decoding="async"
-        width="2100"
-        :src="data.img"
-        alt="Easy Slider Component"
-      /> -->
-
-      <!-- height="700" -->
       <NuxtImg
         :src="data.img"
         :alt="data.title"
@@ -59,13 +47,13 @@ interface Props {
     page: string;
   };
 }
+
 const props = withDefaults(defineProps<Props>(), {
   setThreshold: 0.3,
   setMarginOffset: '0',
 });
 
 const globalStore = useGlobalStore();
-const resetAppLoading = () => console.log('apploading pagesection');
 const isIntersecting = ref(false);
 const pageSectionRef = useTemplateRef('pageSection');
 

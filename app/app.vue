@@ -2,8 +2,10 @@
   <div
     :class="`transition duration-500 ease-in-out ${globalStore.isDarkMode ? 'dark' : ''} dark:bg-black dark:text-white`"
   >
-    <div class="`font-avenir max-w-7xl mx-auto px-2 md:px-4 `">
-      <Nav />
+    <Nav />
+    <div
+      class="font-avenir max-w-7xl mx-auto px-2 md:px-4 relative top-30 md:top-34"
+    >
       <main class="relative min-h-[calc(100dvh-277px)]">
         <button
           v-if="hasFormData"
@@ -16,14 +18,12 @@
       </main>
       <Footer />
       <BackToTopButton />
-      <ClientOnly>
-        <Drawer
-          :is-open="globalStore.isModalActive"
-          @close-event="handleModalToggle"
-        >
-          <ComponentSettings :form-data="drawerFormData" />
-        </Drawer>
-      </ClientOnly>
+      <Drawer
+        :is-open="globalStore.isModalActive"
+        @close-event="handleModalToggle"
+      >
+        <ComponentSettings :form-data="drawerFormData" />
+      </Drawer>
     </div>
   </div>
 </template>
@@ -35,6 +35,7 @@ import BackToTopButton from '@/components/BackToTopButton/BackToTopButton.vue';
 import { useGlobalStore } from '@/stores/global';
 import ComponentSettings from '@/components/ComponentSettings.vue';
 import { formData as componentFormData } from '@/assets/js/formData';
+import { PathName } from '@/assets/js/constants';
 
 const location = useRoute();
 const globalStore = useGlobalStore();
@@ -46,13 +47,17 @@ const selectedFormData = computed(() => {
   )
     return;
   const path = location.path;
-  if (path === '/dashboard') {
-    return componentFormData['/dashboard']?.[globalStore.componentId];
+  if (path === PathName.DASHBOARD) {
+    return componentFormData[PathName.DASHBOARD]?.[globalStore.componentId];
   }
   return componentFormData[path] ?? null;
 });
 
-const hasFormData = computed(() => Array.isArray(selectedFormData.value));
+const hasFormData = computed(
+  () =>
+    Array.isArray(selectedFormData.value) &&
+    location.path !== PathName.DASHBOARD,
+);
 
 const drawerFormData = computed(() => {
   return Array.isArray(selectedFormData.value) ? selectedFormData.value : null;

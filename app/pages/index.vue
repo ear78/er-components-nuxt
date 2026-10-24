@@ -19,7 +19,7 @@
       v-for="section in pageSectionData"
       :key="section.id"
       :data="section"
-      :set-threshold="0.2"
+      :set-threshold="0.1"
     />
   </div>
 </template>

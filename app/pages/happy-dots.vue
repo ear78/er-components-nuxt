@@ -3,14 +3,12 @@
     <PageTitle title="HappyDots" class="mb-10" />
 
     <div class="">
-      <ClientOnly>
         <Dots
           :refs="elementRefs"
           :data="happyData"
           :textColor="pageSettings?.settings.textColor"
           :dotColor="pageSettings?.settings.dotColor"
         />
-      </ClientOnly>
       <div v-for="(item, i) in sectionData" ref="items">
         <SectionHighlight :data="item" :index="i" />
       </div>

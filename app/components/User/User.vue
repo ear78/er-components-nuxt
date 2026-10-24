@@ -183,15 +183,23 @@ onMounted(() => {
 }
 
 .UserTransition {
+  position: absolute;
+  visibility: hidden;
   content-visibility: hidden;
   opacity: 0;
   width: 100%;
   transition: all 1s ease-out;
 
   &.FadeIn {
+    position: static;
+    visibility: visible;
     content-visibility: visible;
     opacity: 1;
     transition: all 1s ease-in;
+
+    @media (min-width: 768px) {
+      position: absolute;
+    }
   }
 }
 </style>
