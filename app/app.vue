@@ -4,7 +4,7 @@
   >
     <Nav />
     <div
-      class="font-avenir max-w-7xl mx-auto px-2 md:px-4 relative top-30 lg:top-34"
+      class="font-avenir max-w-7xl mx-auto px-2 md:px-4 relative top-30 md:top-34"
     >
       <main class="relative min-h-[calc(100dvh-277px)]">
         <button
