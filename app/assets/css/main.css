@@ -4,6 +4,7 @@
   --font-avenir: Avenir next, Helvetica, Arial, sans-serif;
   --default-font-family: var(--font-avenir);
   --page-title-tracking: 13px;
+  --page-title-tracking-mobile: 10px;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));

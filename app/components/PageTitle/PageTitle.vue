@@ -2,7 +2,7 @@
   <h1
     :style="{ ...color }"
     :class="`text-center rounded-lg font-normal text-sm md:text-base
-    uppercase tracking-(--page-title-tracking) ${alternateStyle}
+    uppercase tracking-(--page-title-tracking-mobile) md:tracking-(--page-title-tracking) ${alternateStyle}
     dark:text-pink-600 transition duration-500`"
   >
     &lt;
