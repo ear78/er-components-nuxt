@@ -1,11 +1,17 @@
 <template>
-  <div :class="`NavContainer ${globalStore.isDarkMode ? 'Dark' : ''} border-b border-gray-200 mb-10`">
-    <NuxtLink
-      class="ImgWrapper transition duration-500 ease-in-out"
-      href="/"
-      @click="resetPageLoad"
-    >
-      <img :src="logo" alt="ER Logo" />
+  <div
+    ref="navRef"
+    :class="[
+      'NavContainer fixed transform transition duration-300 ease-in-out w-full left-0 z-50 flex items-center justify-between box-border shadow-[0_5px_15px_-5px_rgba(0,0,0,.06)] py-4 md:py-6 border-b border-gray-200 mb-10 px-2 md:px-4 bg-white dark:bg-black',
+      dynamicNavClasses,
+    ]"
+  >
+    <NuxtLink class="flex w-auto" href="/" @click="resetPageLoad">
+      <img
+        :src="logo"
+        alt="ER Logo"
+        class="transition duration-500 dark:invert w-12"
+      />
     </NuxtLink>
     <Hamburger
       :isActive="isMenuActive"
@@ -13,10 +19,10 @@
       :isDarkMode="globalStore.isDarkMode"
     />
     <!-- Desktop Menu -->
-    <div class="NavDesktop">
+    <div class="NavDesktop hidden lg:flex">
       <ul>
         <li
-          v-for="(item, i) in navMenu"
+          v-for="(item, i) in Routes"
           :key="item.text"
           :style="{
             transitionDelay: `${0 * i}ms`,
@@ -38,8 +44,8 @@
     <div :class="`NavMobile ${isActive}`">
       <ul>
         <li
-          v-for="(item, i) in navMenu"
-          key="{item.text}"
+          v-for="(item, i) in Routes"
+          :key="item.text"
           :class="`${isActive}`"
           :style="{ transitionDelay: `${40 * i}ms` }"
         >
@@ -68,47 +74,51 @@ import Hamburger from '~/components/Hamburger/Hamburger.vue';
 import DarkModeButton from '~/components/DarkModeButton/DarkModeButton.vue';
 import { useGlobalStore } from '~/stores/global';
 import logo from '@/assets/img/er-logo.svg?url';
-
-const navMenu = [
-  {
-    route: '/',
-    text: 'Home',
-  },
-  {
-    route: '/page-banner',
-    text: 'Page Banner',
-  },
-  {
-    route: '/hover-pods',
-    text: 'Hover Pods',
-  },
-  {
-    route: '/team-building',
-    text: 'Team Building',
-  },
-  {
-    route: '/happy-dots',
-    text: 'Happy Dots',
-  },
-  {
-    route: '/dropper',
-    text: 'Dropper',
-  },
-  {
-    route: '/e-slider',
-    text: 'E-Slider',
-  },
-  {
-    route: '/dashboard',
-    text: 'Dashboard',
-  },
-];
+import { Routes } from '~/assets/js/constants';
 
 const globalStore = useGlobalStore();
 const isMenuActive = ref(false);
 const pathname = useRoute();
-
 const isActive = computed(() => (isMenuActive.value ? 'isActive' : ''));
+
+const navRef = useTemplateRef('navRef');
+const showNav = ref(true);
+const dynamicNavClasses = computed(() => {
+  return {
+    '-translate-y-28': !showNav.value,
+    'translate-0': showNav.value,
+  };
+});
+
+watch(navRef, () => {
+  /** Sets up event for Nav scroll animations */
+  window?.addEventListener('scroll', navScrollWatch);
+});
+
+onBeforeUnmount(() => {
+  /** Clean up */
+  window?.removeEventListener('scroll', navScrollWatch);
+});
+
+let lastScrollPosition = 0;
+const navScrollWatch = () => {
+  return setTimeout(() => {
+    const currentPosition = window.scrollY;
+    if (currentPosition > 101 && currentPosition > lastScrollPosition) {
+      // Hide scrolling down the page
+      showNav.value = false;
+    } else if (
+      currentPosition > 101 &&
+      currentPosition < lastScrollPosition - 1
+    ) {
+      setTimeout(() => {
+        // Show when scrolling back up
+        showNav.value = true;
+      }, 100);
+    }
+    lastScrollPosition = currentPosition;
+  }, 10);
+};
 
 const handleToggle = () => {
   isMenuActive.value = !isMenuActive.value;
@@ -126,31 +136,7 @@ const resetPageLoad = () => {
 
 <style scoped>
 .NavContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px 0;
-  position: relative;
-  box-sizing: border-box;
-
-  &.Dark {
-    .ImgWrapper img {
-      filter: invert(1);
-    }
-  }
-
-  .ImgWrapper {
-    display: flex;
-    width: auto;
-  }
-
-  img {
-    width: 50px;
-  }
-
   .NavDesktop {
-    display: none;
-
     ul {
       display: flex;
       column-gap: 1rem;
@@ -253,9 +239,6 @@ const resetPageLoad = () => {
   }
 
   @media (min-width: 1024px) {
-    .NavDesktop {
-      display: block;
-    }
 
     .NavMobile {
       visibility: hidden;
