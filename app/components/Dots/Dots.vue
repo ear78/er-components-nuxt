@@ -61,16 +61,18 @@ const handleScrollTo = (v?: HTMLElement | null) => {
   top: 40vh;
   padding-left: 2%;
 
-  &:hover + .HoverBackground {
-    background: rgba(0, 0, 0, 0.7);
-    height: 100vh;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 50;
-    opacity: 1;
-    transition: var(--transition-medium);
+  @media (hover: hover) {
+    &:hover + .HoverBackground {
+      background: rgba(0, 0, 0, 0.7);
+      height: 100vh;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 50;
+      opacity: 1;
+      transition: var(--transition-medium);
+    }
   }
 
   .HoverItem {
@@ -82,20 +84,22 @@ const handleScrollTo = (v?: HTMLElement | null) => {
     background: var(--color-pink-500);
     transition: all 0.4s ease;
 
-    &:hover {
-      cursor: pointer;
-      background: var(--color-white) !important; /* Override css in js*/
-      color: var(--color-white);
-    }
+    @media (hover: hover) {
+      &:hover {
+        cursor: pointer;
+        background: var(--color-white);
+        color: var(--color-white);
+      }
 
-    &:hover .Text {
-      height: auto;
-      opacity: 1;
-      transform: translateX(70px);
-    }
+      &:hover .Text {
+        height: auto;
+        opacity: 1;
+        transform: translateX(70px);
+      }
 
-    &:hover .Line {
-      width: 300%;
+      &:hover .Line {
+        width: 300%;
+      }
     }
 
     .Text {
