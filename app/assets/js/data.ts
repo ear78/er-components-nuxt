@@ -167,7 +167,7 @@ export const sectionData = [
   {
     id: 0,
     img: chairs,
-    title: { text: 'Hello World' },
+    title: { text: 'Market Place' },
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Porta non pulvinar neque laoreet suspendisse. Euismod elementum nisi quis eleifend quam adipiscing vitae proin. Senectus et netus et malesuada fames ac turpis.',
     button: {
       text: 'Get in touch',
@@ -178,7 +178,7 @@ export const sectionData = [
   {
     id: 1,
     img: echoTower,
-    title: { text: 'Hello World' },
+    title: { text: 'Collective' },
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Porta non pulvinar neque laoreet suspendisse. Euismod elementum nisi quis eleifend quam adipiscing vitae proin. Senectus et netus et malesuada fames ac turpis.',
     button: {
       text: 'Get in touch',
@@ -189,7 +189,7 @@ export const sectionData = [
   {
     id: 2,
     img: stairway,
-    title: { text: 'Hello World' },
+    title: { text: 'Attribution' },
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Porta non pulvinar neque laoreet suspendisse. Euismod elementum nisi quis eleifend quam adipiscing vitae proin. Senectus et netus et malesuada fames ac turpis.',
     button: {
       text: 'Get in touch',
@@ -200,7 +200,7 @@ export const sectionData = [
   {
     id: 3,
     img: stripes,
-    title: { text: 'Hello World' },
+    title: { text: 'SmartLink' },
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Porta non pulvinar neque laoreet suspendisse. Euismod elementum nisi quis eleifend quam adipiscing vitae proin. Senectus et netus et malesuada fames ac turpis.',
     button: {
       text: 'Get in touch',
@@ -211,7 +211,7 @@ export const sectionData = [
   {
     id: 4,
     img: jail,
-    title: { text: 'Hello World' },
+    title: { text: 'User Experience' },
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Porta non pulvinar neque laoreet suspendisse. Euismod elementum nisi quis eleifend quam adipiscing vitae proin. Senectus et netus et malesuada fames ac turpis.',
     button: {
       text: 'Get in touch',
