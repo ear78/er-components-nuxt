@@ -14,7 +14,7 @@
           background: dotColor,
           color: textColor,
         }"
-        :class="`HoverItem ${activeClass(d.id)}`"
+        :class="`HoverItem ${activeItemClass(d.id)}`"
       >
         <div class="Line" />
         <span :style="{ width: `${textWidth}px` }" class="Text">{{
@@ -24,7 +24,7 @@
     </template>
   </ul>
   <div
-    :class="`HoverBackground ${isDotActive ? 'is-active' : ''}`"
+    :class="`HoverBackground ${isActive}`"
     @touchend="mobileBackgroundClose"
   />
 </template>
@@ -42,7 +42,10 @@ const props = defineProps<{
 }>();
 
 const activeIndex = ref<number | null>(null);
-const isDotActive = ref(false);
+
+const isActive = computed(() =>
+  activeIndex.value || activeIndex.value === 0 ? 'is-active' : '',
+);
 
 const handleScrollTo = (v?: HTMLElement | null, id: number = 0) => {
   if (!v) return;
@@ -50,7 +53,6 @@ const handleScrollTo = (v?: HTMLElement | null, id: number = 0) => {
   // Let non touch devices use hover events and handle the active setting
   if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
     activeIndex.value = id;
-    isDotActive.value = true;
   }
 
   v.scrollIntoView({
@@ -61,13 +63,12 @@ const handleScrollTo = (v?: HTMLElement | null, id: number = 0) => {
 };
 
 /** Touch screen click handlers */
-const activeClass = (index: number) => {
+const activeItemClass = (index: number) => {
   return index === activeIndex.value ? 'is-active' : '';
 };
 
 /** Touch end event */
 const mobileBackgroundClose = () => {
-  isDotActive.value = false;
   activeIndex.value = null;
 };
 </script>
