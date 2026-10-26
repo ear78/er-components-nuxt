@@ -9,12 +9,12 @@
   >
     <template v-for="(d, i) in data" :key="d.id">
       <li
-        @click="handleScrollTo(refs?.[i])"
+        @click="handleScrollTo(refs?.[i], d.id)"
         :style="{
           background: dotColor,
           color: textColor,
         }"
-        class="HoverItem"
+        :class="`HoverItem ${activeClass(d.id)}`"
       >
         <div class="Line" />
         <span :style="{ width: `${textWidth}px` }" class="Text">{{
@@ -23,7 +23,10 @@
       </li>
     </template>
   </ul>
-  <div class="HoverBackground" />
+  <div
+    :class="`HoverBackground ${isDotActive ? 'is-active' : ''}`"
+    @touchend="mobileBackgroundClose"
+  />
 </template>
 
 <script setup lang="ts">
@@ -38,15 +41,34 @@ const props = defineProps<{
   refs?: (HTMLElement | null | undefined)[] | null;
 }>();
 
-const dotColorRef = computed(() => props.dotColor);
-const handleScrollTo = (v?: HTMLElement | null) => {
+const activeIndex = ref<number | null>(null);
+const isDotActive = ref(false);
+
+const handleScrollTo = (v?: HTMLElement | null, id: number = 0) => {
   if (!v) return;
+
+  // Let non touch devices use hover events and handle the active setting
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    activeIndex.value = id;
+    isDotActive.value = true;
+  }
 
   v.scrollIntoView({
     behavior: 'smooth',
     block: 'center',
     inline: 'nearest',
   });
+};
+
+/** Touch screen click handlers */
+const activeClass = (index: number) => {
+  return index === activeIndex.value ? 'is-active' : '';
+};
+
+/** Touch end event */
+const mobileBackgroundClose = () => {
+  isDotActive.value = false;
+  activeIndex.value = null;
 };
 </script>
 
@@ -60,6 +82,19 @@ const handleScrollTo = (v?: HTMLElement | null) => {
   z-index: 60;
   top: 40vh;
   padding-left: 2%;
+
+  /* Touch Screen classes */
+  & ~ .HoverBackground.is-active {
+    background: rgba(0, 0, 0, 0.7);
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    opacity: 1;
+    transition: var(--transition-medium);
+  }
 
   @media (hover: hover) {
     &:hover + .HoverBackground {
@@ -83,6 +118,24 @@ const handleScrollTo = (v?: HTMLElement | null) => {
     border-radius: 50%;
     background: var(--color-pink-500);
     transition: all 0.4s ease;
+
+    /* Touch screen */
+    &.is-active {
+      cursor: pointer;
+      background: var(--color-white);
+      color: var(--color-white);
+    }
+
+    &.is-active .Text {
+      height: auto;
+      opacity: 1;
+      transform: translateX(70px);
+    }
+
+    &.is-active .Line {
+      width: 300%;
+    }
+    /* End Touch screen */
 
     @media (hover: hover) {
       &:hover {
@@ -139,7 +192,7 @@ const handleScrollTo = (v?: HTMLElement | null) => {
       height: 12px;
       width: 12px;
       background-color: var(--color-white);
-      border: 1px solid v-bind('dotColorRef');
+      /* border: 1px solid v-bind('dotColorRef'); */
       border-radius: 50%;
       display: inline-block;
       z-index: -1;
