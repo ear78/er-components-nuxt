@@ -1,6 +1,4 @@
 
-<!-- export default TeamBuilding; -->
-
 <template>
   <div :class="`TeamBuilding ${globalStore.isDarkMode ? 'Dark' : ''}`">
     <PageTitle title="TeamBuilding" />
