@@ -2,7 +2,7 @@
   <section aria-labelledby="component-settings-title">
     <h2
       id="component-settings-title"
-      className="mb-4 pt-6 text-xl font-semibold dark:text-gray-800"
+      class="mb-4 pt-6 text-xl font-semibold dark:text-gray-800"
     >
       {{ title || 'Settings' }}
     </h2>

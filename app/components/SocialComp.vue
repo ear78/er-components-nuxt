@@ -51,10 +51,6 @@ const socialItems = [
   transition: all .14s ease-out;
 }
 
- /* .SocialComp:hover a { */
-   /* color: grey; */
- /* } */
-
 .SocialComp i {
   font-size: 1.65em;
 }
