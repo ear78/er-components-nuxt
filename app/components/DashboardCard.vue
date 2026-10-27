@@ -4,7 +4,7 @@
     :class="`card flex flex-col justify-between rounded-xl p-5 border border-neutral-200 shadow-lg h-auto transition duration-500 dark:bg-neutral-900 dark:border-transparent`"
   >
     <p class="header flex items-center m-0 font-bold">
-      <img :src="logo" alt="logo" className="w-5 mr-2 dark:invert" />
+      <img :src="logo" alt="logo" class="w-5 mr-2 dark:invert" />
       {{ component.component }}
     </p>
     <p class="description mt-2 mb-4 text-sm">
