@@ -25,7 +25,6 @@
 <script setup lang="ts">
 import PageTitle from '~/components/PageTitle/PageTitle.vue';
 import User from '@/components/User/User.vue';
-import DashboardCard from '@/components/DashboardCard/DashboardCard.vue';
 import { useGlobalStore } from '@/stores/global';
 
 const globalStore = useGlobalStore();
