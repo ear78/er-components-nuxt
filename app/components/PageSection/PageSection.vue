@@ -25,7 +25,7 @@
         :src="data.img"
         :alt="data.title"
         width="2100"
-        className="rounded-lg shadow-xl"
+        class="rounded-lg shadow-xl"
       />
     </div>
   </section>
