@@ -4,9 +4,9 @@
   >
     <Nav />
     <div
-      class="font-avenir max-w-7xl mx-auto px-2 md:px-4 relative top-30 md:top-34"
+      class="font-avenir max-w-7xl mx-auto px-2 md:px-4 relative top-30 md:top-34 dark:bg-black transition duration-500 ease-in-out"
     >
-      <main class="relative min-h-[calc(100dvh-277px)]">
+      <main class="relative min-h-[calc(100dvh-272px)]">
         <button
           v-if="hasFormData"
           @click="handleModalToggle"

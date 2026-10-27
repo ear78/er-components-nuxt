@@ -1,18 +1,19 @@
-
 <template>
   <div
-    key="{component.id}"
-    :class="`Card h-auto ${isDarkMode ? 'Dark' : ''} transition duration-500`"
+    :key="component.id"
+    :class="`card flex flex-col justify-between rounded-xl p-5 border border-neutral-200 shadow-lg h-auto transition duration-500 dark:bg-neutral-900 dark:border-transparent`"
   >
-    <p class="Header">
-      <img :src="logo" alt="logo" className="w-5" />
+    <p class="header flex items-center m-0 font-bold">
+      <img :src="logo" alt="logo" className="w-5 mr-2 dark:invert" />
       {{ component.component }}
     </p>
-    <p class="Description">
+    <p class="description mt-2 mb-4 text-sm">
       {{ component.description }}
       <template v-if="Object.keys(component.settings).length > 1">
         <template v-for="(value, key) in component.settings" :key="key">
-          <span class="SettingsPill transition duration-500">
+          <span
+            class="settings-pill inline-flex flex-wrap bg-neutral-200 rounded-2xl py-px px-2.5 mr-1.5 font-medium whitespace-pre mb-1 overflow-clip transition duration-500 dark:bg-neutral-700"
+          >
             <b>{{ `${key}:` }}</b>
             &nbsp;
             <template v-if="typeof value === 'boolean' && value">
@@ -27,10 +28,19 @@
           </span>
         </template>
       </template>
-      <span v-else class="SettingsPill">Default Settings</span>
+      <span
+        v-else
+        class="settings-pill inline-flex flex-wrap bg-neutral-200 rounded-2xl py-px px-2.5 mr-1.5 font-medium whitespace-pre mb-1 overflow-clip dark:bg-neutral-700"
+      >
+        Default Settings
+      </span>
     </p>
-    <p class="Footer">
-      <span class="Circle" />
+    <p
+      class="footer flex items-center mt-auto mr-0 mb-0 ml-0 uppercase text-xs font-medium text-neutral-500"
+    >
+      <span
+        class="circle mr-2.5 h-3 w-3 inline-block bg-pink-500/40 border border-pink-400 rounded-full"
+      />
       {{ component.component }}
       &nbsp; settings
       <button
@@ -38,7 +48,7 @@
         :disabled="!isButtonEnabled"
         :aria-label="`Edit settings for ${component.component}`"
         @click="$emit('editSettings', component.id)"
-        :class="`EditBtn w-9 h-8 ${!isButtonEnabled ? 'disabled:opacity-50 cursor-not-allowed' : 'cursor-pointer'}`"
+        :class="`edit-btn w-9 h-8 text-xs ml-auto bg-black text-white border border-black pb-0.5 rounded-md flex justify-center items-center hover:bg-neutral-800 ${!isButtonEnabled ? 'disabled:opacity-50 cursor-not-allowed' : 'cursor-pointer'}`"
       >
         <FontAwesomeIcon :icon="faEdit" width-auto class="w-3 h-3" />
       </button>
@@ -72,100 +82,3 @@ const truncate = (str: any, maxLength = 30) => {
   return truncated;
 };
 </script>
-
-<style scoped>
-.Dark {
-  &.Card {
-    background: var(--gray-800);
-    border: 1px solid transparent;
-
-    .Header {
-      img {
-        filter: invert(1);
-      }
-    }
-
-    .SettingsPill {
-      background: var(--gray-700);
-    }
-  }
-}
-
-.Card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border: var(--border);
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-
-  .Header {
-    display: flex;
-    align-items: center;
-    font-weight: 700;
-    margin: 0;
-
-    img {
-      width: 20px;
-      margin-right: 8px;
-    }
-  }
-
-  .Description {
-    margin: 0.5rem 0 1rem;
-    font-size: 0.9rem;
-  }
-
-  .SettingsPill {
-    display: inline-flex;
-    flex-wrap: wrap;
-    background: var(--gray-200);
-    border-radius: 15px;
-    padding: 1px 10px;
-    margin: 0 5px 0 0;
-    font-weight: 500;
-    white-space: pre;
-    margin-bottom: 4px;
-    overflow-x: clip;
-  }
-
-  .Footer {
-    display: flex;
-    align-items: center;
-    margin: auto 0 0 0;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--gray-500);
-
-    .Circle {
-      margin-right: 10px;
-      height: 13px;
-      width: 13px;
-      display: inline-block;
-      background: color-mix(in srgb, var(--secondary-color) 50%, white);
-      border: 1px solid color-mix(in srgb, var(--secondary-color) 90%, white);
-      border-radius: 50%;
-    }
-
-    .EditBtn {
-      text-transform: capitalize;
-      font-size: 0.75rem;
-      margin-left: auto;
-      background: black;
-      color: white;
-      border: 1px solid black;
-      padding: 0 0 2px;
-      border-radius: 5px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      &:hover {
-        background: color-mix(in oklab, black 70%, white);
-      }
-    }
-  }
-}
-</style>
