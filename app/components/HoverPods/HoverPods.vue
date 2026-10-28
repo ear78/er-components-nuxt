@@ -97,6 +97,7 @@ onMounted(() => {
     color: var(--white);
     position: absolute;
     width: 100%;
+    top: 45%;
     text-align: center;
     opacity: 1;
     transition:
