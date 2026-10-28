@@ -24,7 +24,6 @@
 
 <script setup lang="ts">
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
-import Dropper from '~/components/Dropper/Dropper.vue';
 import { dropperData } from '~/assets/js/data';
 import colors from '@/assets/js/colors';
 </script>
