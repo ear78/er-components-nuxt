@@ -1,26 +1,31 @@
 <template>
-  <div class="HoverPodsContainer">
+  <div
+    class="hover-pods-container flex flex-col md:flex-row items-center justify-evenly pt-10"
+  >
     <template v-if="podData.length">
       <div
         v-for="(pod, index) in podData"
         :key="pod.id"
         :style="{ transitionDelay: `${index * delay}ms` }"
-        :class="`HP ${!isLoading ? 'FadeIn' : ''}`"
+        :class="`hover-pod ${!isLoading ? 'fade-in' : ''}`"
       >
         <div
           :style="{ backgroundImage: `url(${pod.podBgImage})` }"
-          :class="`Pod ${hoverPodSquared}`"
+          :class="`pod ${hoverPodSquared} relative bg-cover rounded-full mb-5 w-50 h-50 md:w-36 md:h-36 lg:w-50 lg:h-50 `"
         >
           <a
             :href="pod.podLink"
             rel="noreferrer"
             :target="`${openTab ? '_blank' : ''}`"
+            class="group"
           >
             <div
               :style="{ backgroundColor: `${hoverColor}ad` }"
-              :class="`HoverColor ${hoverPodSquared}`"
+              :class="`hover-color ${hoverPodSquared} `"
             >
-              <p class="HoverText">{{ pod.podText }}</p>
+              <p class="hover-text">
+                {{ pod.podText }}
+              </p>
             </div>
           </a>
         </div>
@@ -48,7 +53,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const isLoading = ref(true);
-const hoverPodSquared = computed(() => (props.isSquared ? 'Squared' : ''));
+const hoverPodSquared = computed(() => (props.isSquared ? 'squared' : ''));
 
 onMounted(() => {
   /** Page loading delay using client only to keep hydration mismatches in sync. */
@@ -59,51 +64,25 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.HoverPodsContainer {
-  display: flex;
-  justify-content: space-evenly;
-  padding-top: 40px;
-  flex-direction: column;
-  align-items: center;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
-
-  .Pod {
-    position: relative;
-    background-size: cover;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    margin-bottom: 20px;
-
-    @media (min-width: 768px) and (max-width: 1000px) {
-      width: 150px;
-      height: 150px;
-    }
-
+.hover-pods-container {
+  a {
     @media (hover: hover) {
-      &:hover .HoverColor,
-      &:hover .HoverText {
+      &:hover .hover-color,
+      &:hover .hover-text {
         top: 45%;
         cursor: pointer;
         opacity: 1;
       }
 
-      .HoverColor,
-      .HoverText {
+      .hover-color,
+      .hover-text {
         opacity: 0;
         top: 40%;
       }
     }
-
-    a {
-      line-height: 1.4;
-    }
   }
 
-  .HoverColor {
+  .hover-color {
     width: 100%;
     height: 100%;
     background: #00000099;
@@ -113,12 +92,12 @@ onMounted(() => {
     transition: opacity 0.2s ease;
   }
 
-  .HoverText {
+  .hover-text {
     margin: 0;
     color: var(--white);
     position: absolute;
-    top: 45%;
     width: 100%;
+    top: 45%;
     text-align: center;
     opacity: 1;
     transition:
@@ -126,18 +105,18 @@ onMounted(() => {
       top 0.2s ease 0.1s;
   }
 
-  .Pod,
-  .HoverColor {
-    &.Squared {
+  .pod,
+  .hover-color {
+    &.squared {
       border-radius: 0;
     }
   }
 
-  /* Appear animation */
-  .HP {
+  /* Appear load animation */
+  .hover-pod {
     opacity: 0;
     transition: opacity 1s ease;
-    &.FadeIn {
+    &.fade-in {
       opacity: 1;
     }
   }

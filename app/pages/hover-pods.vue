@@ -1,6 +1,6 @@
 <template>
   <section
-    :class="`HoverPodsView transition duration-500 ${globalStore.isDarkMode ? 'Dark' : ''} min-h-dvh md:min-h-87 lg:min-h-100 rounded-lg`"
+    class="hover-pods-view transition duration-500 ease-in-out bg-neutral-100 pt-10 pb-19 relative min-h-dvh md:min-h-87 lg:min-h-100 rounded-lg dark:bg-neutral-800"
   >
     <PageTitle title="HoverPods" />
     <HoverPods
@@ -20,15 +20,3 @@ import { podData } from '~/assets/js/data';
 const globalStore = useGlobalStore();
 const pageSettings = globalStore.components[1];
 </script>
-
-<style scoped>
-.HoverPodsView {
-  background: var(--gray-100);
-  padding: 40px 0 75px;
-  position: relative;
-
-  &.Dark {
-    background: var(--gray-800);
-  }
-}
-</style>
