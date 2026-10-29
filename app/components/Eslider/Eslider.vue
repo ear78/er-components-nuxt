@@ -9,7 +9,7 @@
           aria-label="left"
           @click="goToPrev($event)"
           @keyUp="goToPrev($event)"
-          class="hidden md:flex left-[1%] bg-white/60 absolute h-10 w-10 items-center justify-center rounded-full top-1/2 -translate-y-1/2 z-10 cursor-pointer hover:bg-white/80 hover:shadow-md transform hover:scale-105 disabled:cursor-not-allowed disabled:scale-100 disabled:bg-white/60 transition"
+          class="overlay-buttons left-[1%] bg-white/60 absolute h-10 w-10 items-center justify-center rounded-full top-1/2 -translate-y-1/2 z-10 cursor-pointer hover:bg-white/80 hover:shadow-md transform hover:scale-105 disabled:cursor-not-allowed disabled:scale-100 disabled:bg-white/60 transition"
           :disabled="isPrevBtnDisabled"
         >
           <FontAwesomeIcon width-auto class="w-2.5 h-4" :icon="faChevronLeft" />
@@ -39,7 +39,7 @@
           aria-label="right"
           @click="goToNext($event)"
           @keyUp="goToNext($event)"
-          class="hidden md:flex right-[1%] bg-white/60 absolute h-10 w-10 items-center justify-center rounded-full top-1/2 -translate-y-1/2 z-10 cursor-pointer hover:bg-white/80 hover:shadow-md transform hover:scale-105 disabled:cursor-not-allowed disabled:scale-100 disabled:bg-white/60 transition"
+          class="overlay-buttons right-[1%] bg-white/60 absolute h-10 w-10 items-center justify-center rounded-full top-1/2 -translate-y-1/2 z-10 cursor-pointer hover:bg-white/80 hover:shadow-md transform hover:scale-105 disabled:cursor-not-allowed disabled:scale-100 disabled:bg-white/60 transition"
           :disabled="isNextBtnDisabled"
         >
           <FontAwesomeIcon
@@ -272,8 +272,6 @@ const resetSlider = () => {
 </script>
 
 <style scoped>
-/* @use '../../assets/scss/variables'; */
-
 .Eslider {
   display: flex;
   overflow-x: auto;
@@ -420,6 +418,19 @@ const resetSlider = () => {
   &:active,
   &.ActiveDot {
     background: var(--secondary-color);
+  }
+}
+
+/* Overlay Button styles */
+.overlay-buttons {
+  display: none;
+
+  @media (hover: hover) {
+    display: none;
+
+    @media (min-width: 640px) {
+      display: flex;
+    }
   }
 }
 
