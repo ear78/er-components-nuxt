@@ -1,5 +1,19 @@
 <template>
   <div :id="carouselId">
+    <!-- Overlay button left -->
+    <button
+      v-if="overlayBtns"
+      type="button"
+      aria-label="left"
+      @click="goToPrev($event)"
+      @keyUp="goToPrev($event)"
+      class="hidden md:flex left-[1%] bg-white/40 absolute h-10 w-10 items-center justify-center rounded-full top-[calc(50%-20px)] z-10 cursor-pointer hover:bg-white/80 hover:shadow-md transform hover:scale-105 disabled:cursor-not-allowed disabled:scale-100 disabled:bg-white/40 transition"
+      :disabled="isPrevBtnDisabled"
+    >
+      <FontAwesomeIcon width-auto class="w-2.5 h-4" :icon="faChevronLeft" />
+    </button>
+
+    <!-- Scroll Slide Container -->
     <div ref="scrollContainerRef" @scroll="handleScroll" class="Eslider">
       <div
         v-for="(slide, i) in data"
@@ -15,6 +29,20 @@
         <div class="Overlay rounded-lg" />
       </div>
     </div>
+
+    <!-- Overlay button right -->
+    <button
+      v-if="overlayBtns"
+      type="button"
+      aria-label="right"
+      @click="goToNext($event)"
+      @keyUp="goToNext($event)"
+      class="hidden md:flex right-[2%] bg-white/40 absolute h-10 w-10 items-center justify-center rounded-full top-[calc(50%-20px)] z-10 cursor-pointer hover:bg-white/80 hover:shadow-md transform hover:scale-105 disabled:cursor-not-allowed disabled:scale-100 disabled:bg-white/40 transition"
+      :disabled="isNextBtnDisabled"
+    >
+      <FontAwesomeIcon width-auto class="w-2.5 h-4" :icon="faChevronRight" />
+    </button>
+
     <template v-if="hasNavigation && !hasDots">
       <div class="SlideBtns">
         <button
@@ -24,7 +52,7 @@
           @keyUp="goToPrev($event)"
           :disabled="isPrevBtnDisabled"
         >
-          <FontAwesomeIcon :icon="faChevronLeft" />
+          <FontAwesomeIcon width-auto class="w-2.5 h-4" :icon="faChevronLeft" />
         </button>
         <button
           type="button"
@@ -33,10 +61,12 @@
           @keyUp="goToNext($event)"
           :disabled="isNextBtnDisabled"
         >
-          <FontAwesomeIcon :icon="faChevronRight" />
+          <FontAwesomeIcon width-auto class="w-2.5 h-4" :icon="faChevronRight" />
         </button>
       </div>
     </template>
+
+    <!-- Dots Indicator -->
     <template v-if="hasDots && !hasNavigation">
       <div class="Dots">
         <button
@@ -61,7 +91,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useGlobalStore } from '@/stores/global';
 
-const props = defineProps<{
+interface EsliderProps {
   data: {
     id: number;
     image: string;
@@ -70,7 +100,14 @@ const props = defineProps<{
   carouselId?: string;
   hasNavigation?: boolean;
   hasDots?: boolean;
-}>();
+  overlayBtns?: boolean;
+}
+
+const props = withDefaults(defineProps<EsliderProps>(), {
+  hasNavigation: false,
+  overlayBtns: true,
+  hasDots: false,
+});
 
 const globalStore = useGlobalStore();
 const scrollContainerRef = useTemplateRef<HTMLElement>('scrollContainerRef');
