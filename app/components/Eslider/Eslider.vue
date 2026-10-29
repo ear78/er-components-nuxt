@@ -1,20 +1,22 @@
 <template>
   <div :id="carouselId">
-    <!-- Overlay button left -->
-    <button
-      v-if="overlayBtns"
-      type="button"
-      aria-label="left"
-      @click="goToPrev($event)"
-      @keyUp="goToPrev($event)"
-      class="hidden md:flex left-[1%] bg-white/60 absolute h-10 w-10 items-center justify-center rounded-full top-[calc(50%-20px)] z-10 cursor-pointer hover:bg-white/80 hover:shadow-md transform hover:scale-105 disabled:cursor-not-allowed disabled:scale-100 disabled:bg-white/60 transition"
-      :disabled="isPrevBtnDisabled"
-    >
-      <FontAwesomeIcon width-auto class="w-2.5 h-4" :icon="faChevronLeft" />
-    </button>
-
     <!-- Scroll Slide Container -->
-    <div ref="scrollContainerRef" @scroll="handleScroll" class="Eslider">
+    <div ref="scrollContainerRef" @scroll="handleScroll" class="Eslider relative">
+      <!-- Overlay button left -->
+      <template v-if="overlayBtns">
+        <button
+          v-if="overlayBtns"
+          type="button"
+          aria-label="left"
+          @click="goToPrev($event)"
+          @keyUp="goToPrev($event)"
+          class="hidden md:flex left-[1%] bg-white/60 absolute h-10 w-10 items-center justify-center rounded-full top-1/2 -translate-y-1/2 z-10 cursor-pointer hover:bg-white/80 hover:shadow-md transform hover:scale-105 disabled:cursor-not-allowed disabled:scale-100 disabled:bg-white/60 transition"
+          :disabled="isPrevBtnDisabled"
+        >
+          <FontAwesomeIcon width-auto class="w-2.5 h-4" :icon="faChevronLeft" />
+        </button>
+      </template>
+
       <div
         v-for="(slide, i) in data"
         :key="slide.id"
@@ -28,20 +30,26 @@
         <div class="OverlayText">{{ slide.text }}</div>
         <div class="Overlay rounded-lg" />
       </div>
-    </div>
 
-    <!-- Overlay button right -->
-    <button
-      v-if="overlayBtns"
-      type="button"
-      aria-label="right"
-      @click="goToNext($event)"
-      @keyUp="goToNext($event)"
-      class="hidden md:flex right-[1%] bg-white/60 absolute h-10 w-10 items-center justify-center rounded-full top-[calc(50%-20px)] z-10 cursor-pointer hover:bg-white/80 hover:shadow-md transform hover:scale-105 disabled:cursor-not-allowed disabled:scale-100 disabled:bg-white/60 transition"
-      :disabled="isNextBtnDisabled"
-    >
-      <FontAwesomeIcon width-auto class="w-2.5 h-4" :icon="faChevronRight" />
-    </button>
+      <!-- Overlay button right -->
+      <template v-if="overlayBtns">
+        <button
+          v-if="overlayBtns"
+          type="button"
+          aria-label="right"
+          @click="goToNext($event)"
+          @keyUp="goToNext($event)"
+          class="hidden md:flex right-[1%] bg-white/60 absolute h-10 w-10 items-center justify-center rounded-full top-1/2 -translate-y-1/2 z-10 cursor-pointer hover:bg-white/80 hover:shadow-md transform hover:scale-105 disabled:cursor-not-allowed disabled:scale-100 disabled:bg-white/60 transition"
+          :disabled="isNextBtnDisabled"
+        >
+          <FontAwesomeIcon
+            width-auto
+            class="w-2.5 h-4"
+            :icon="faChevronRight"
+          />
+        </button>
+      </template>
+    </div>
 
     <template v-if="hasNavigation && !hasDots">
       <div class="SlideBtns">
@@ -61,12 +69,16 @@
           @keyUp="goToNext($event)"
           :disabled="isNextBtnDisabled"
         >
-          <FontAwesomeIcon width-auto class="w-2.5 h-4" :icon="faChevronRight" />
+          <FontAwesomeIcon
+            width-auto
+            class="w-2.5 h-4"
+            :icon="faChevronRight"
+          />
         </button>
       </div>
     </template>
 
-    <!-- Dots Indicator -->
+    <!-- Dots Indicator [WIP] -->
     <template v-if="hasDots && !hasNavigation">
       <div class="Dots">
         <button

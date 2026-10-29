@@ -18,6 +18,8 @@ export interface ComponentSettings {
   altLayout?: boolean;
   dotColor?: string;
   textColor?: string;
+  hasNavigation?: boolean;
+  overlayBtns?: boolean;
 }
 
 interface Component {
@@ -111,6 +113,8 @@ export const useGlobalStore = defineStore('globalStore', {
         You're current settings used are: `,
         settings: {
           id: 5,
+          overlayBtns: true,
+          hasNavigation: false,
         },
       },
     ] as Component[],
