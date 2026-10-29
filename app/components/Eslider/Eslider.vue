@@ -1,11 +1,10 @@
 <template>
   <div :id="carouselId">
     <!-- Scroll Slide Container -->
-    <div ref="scrollContainerRef" @scroll="handleScroll" class="Eslider relative">
+    <div class="slide-wrapper relative">
       <!-- Overlay button left -->
       <template v-if="overlayBtns">
         <button
-          v-if="overlayBtns"
           type="button"
           aria-label="left"
           @click="goToPrev($event)"
@@ -17,24 +16,25 @@
         </button>
       </template>
 
-      <div
-        v-for="(slide, i) in data"
-        :key="slide.id"
-        ref="scrollRefs"
-        :style="{
-          backgroundImage: `url(${slide.image})`,
-          marginRight: isLastSlide(data, i),
-        }"
-        :class="`Slide ${globalStore.isAppLoading ? 'isBlurred' : ''} rounded-lg`"
-      >
-        <div class="OverlayText">{{ slide.text }}</div>
-        <div class="Overlay rounded-lg" />
+      <div ref="scrollContainerRef" @scroll="handleScroll" class="Eslider">
+        <div
+          v-for="(slide, i) in data"
+          :key="slide.id"
+          ref="scrollRefs"
+          :style="{
+            backgroundImage: `url(${slide.image})`,
+            marginRight: isLastSlide(data, i),
+          }"
+          :class="`Slide ${globalStore.isAppLoading ? 'isBlurred' : ''} rounded-lg`"
+        >
+          <div class="OverlayText">{{ slide.text }}</div>
+          <div class="Overlay rounded-lg" />
+        </div>
       </div>
 
       <!-- Overlay button right -->
       <template v-if="overlayBtns">
         <button
-          v-if="overlayBtns"
           type="button"
           aria-label="right"
           @click="goToNext($event)"
@@ -132,6 +132,10 @@ const isLastSlide = (data: typeof props.data, index: number) => {
   return data?.length - 1 === index ? '0' : '2%';
 };
 
+onMounted(() => {
+  resetSlider();
+});
+
 /**
  * Function to go to current slide
  */
@@ -153,6 +157,7 @@ const scrollToSlide = (slide: number) => {
 const goToPrev = (e?: any) => {
   if (e.type === 'click' || e?.key === 'space' || e?.key === 'ArrowLeft') {
     const currentRef = currentSlide.value - 1;
+    nextTick();
     scrollToSlide(currentRef);
     if (scrollContainerRef.value?.scrollLeft === 0) {
       isPrevBtnDisabled.value = true;
@@ -168,6 +173,7 @@ const goToPrev = (e?: any) => {
 const goToNext = (e?: any) => {
   if (e.type === 'click' || e?.key === 'space' || e?.key === 'ArrowRight') {
     const currentRef = currentSlide.value + 1;
+    nextTick();
     scrollToSlide(currentRef);
     if (
       scrollContainerRef.value &&
