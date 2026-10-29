@@ -7,7 +7,7 @@
       aria-label="left"
       @click="goToPrev($event)"
       @keyUp="goToPrev($event)"
-      class="hidden md:flex left-[1%] bg-white/40 absolute h-10 w-10 items-center justify-center rounded-full top-[calc(50%-20px)] z-10 cursor-pointer hover:bg-white/80 hover:shadow-md transform hover:scale-105 disabled:cursor-not-allowed disabled:scale-100 disabled:bg-white/60 transition"
+      class="hidden md:flex left-[1%] bg-white/60 absolute h-10 w-10 items-center justify-center rounded-full top-[calc(50%-20px)] z-10 cursor-pointer hover:bg-white/80 hover:shadow-md transform hover:scale-105 disabled:cursor-not-allowed disabled:scale-100 disabled:bg-white/60 transition"
       :disabled="isPrevBtnDisabled"
     >
       <FontAwesomeIcon width-auto class="w-2.5 h-4" :icon="faChevronLeft" />
@@ -37,7 +37,7 @@
       aria-label="right"
       @click="goToNext($event)"
       @keyUp="goToNext($event)"
-      class="hidden md:flex right-[1%] bg-white/40 absolute h-10 w-10 items-center justify-center rounded-full top-[calc(50%-20px)] z-10 cursor-pointer hover:bg-white/80 hover:shadow-md transform hover:scale-105 disabled:cursor-not-allowed disabled:scale-100 disabled:bg-white/60 transition"
+      class="hidden md:flex right-[1%] bg-white/60 absolute h-10 w-10 items-center justify-center rounded-full top-[calc(50%-20px)] z-10 cursor-pointer hover:bg-white/80 hover:shadow-md transform hover:scale-105 disabled:cursor-not-allowed disabled:scale-100 disabled:bg-white/60 transition"
       :disabled="isNextBtnDisabled"
     >
       <FontAwesomeIcon width-auto class="w-2.5 h-4" :icon="faChevronRight" />
