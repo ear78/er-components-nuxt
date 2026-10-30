@@ -191,5 +191,18 @@ export const formData: Record<string, FormDataEntry> = {
     { id: 1, inputType: 'color', labelText: 'Text Color', name: 'textColor' },
   ],
   '/dropper': null,
-  '/e-slider': null,
+  '/e-slider': [
+    {
+      id: 0,
+      inputType: 'checkbox',
+      labelText: 'Navigation Buttons',
+      name: 'hasNavigation',
+    },
+    {
+      id: 1,
+      inputType: 'checkbox',
+      labelText: 'Overlay Buttons',
+      name: 'overlayBtns',
+    },
+  ],
 };

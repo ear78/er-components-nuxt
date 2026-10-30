@@ -1,42 +1,92 @@
 <template>
   <div :id="carouselId">
-    <div ref="scrollContainerRef" @scroll="handleScroll" class="Eslider">
-      <div
-        v-for="(slide, i) in data"
-        :key="slide.id"
-        ref="scrollRefs"
-        :style="{
-          backgroundImage: `url(${slide.image})`,
-          marginRight: isLastSlide(data, i),
-        }"
-        :class="`Slide ${globalStore.isAppLoading ? 'isBlurred' : ''} rounded-lg`"
-      >
-        <div class="OverlayText">{{ slide.text }}</div>
-        <div class="Overlay rounded-lg" />
-      </div>
-    </div>
-    <template v-if="hasNavigation && !hasDots">
-      <div class="SlideBtns">
+    <!-- Scroll Slide Container -->
+    <div class="slide-wrapper relative">
+      <!-- Overlay button left -->
+      <template v-if="overlayBtns">
         <button
           type="button"
           aria-label="left"
           @click="goToPrev($event)"
           @keyUp="goToPrev($event)"
+          class="overlay-buttons left-[1%] bg-white/60 absolute h-10 w-10 items-center justify-center rounded-full top-1/2 -translate-y-1/2 z-10 cursor-pointer hover:bg-white/80 hover:shadow-md transform hover:scale-105 disabled:cursor-not-allowed disabled:scale-100 disabled:bg-white/60 transition"
           :disabled="isPrevBtnDisabled"
         >
-          <FontAwesomeIcon :icon="faChevronLeft" />
+          <FontAwesomeIcon width-auto class="w-2.5 h-4" :icon="faChevronLeft" />
         </button>
+      </template>
+
+      <div
+        ref="scrollContainerRef"
+        @scroll="handleScroll"
+        class="Eslider flex overflow-auto my-0 mx-auto scroll-smooth scrollbar-none snap-x snap-mandatory"
+      >
+        <div
+          v-for="(slide, i) in data"
+          :key="slide.id"
+          ref="scrollRefs"
+          :style="{
+            backgroundImage: `url(${slide.image})`,
+            marginRight: isLastSlide(data, i),
+          }"
+          :class="`Slide ${globalStore.isAppLoading ? 'isBlurred' : ''} rounded-lg`"
+        >
+          <div class="OverlayText">
+            {{ slide.text }}
+          </div>
+          <div class="Overlay" />
+        </div>
+      </div>
+
+      <!-- Overlay button right -->
+      <template v-if="overlayBtns">
         <button
           type="button"
           aria-label="right"
           @click="goToNext($event)"
           @keyUp="goToNext($event)"
+          class="overlay-buttons right-[1%] bg-white/60 absolute h-10 w-10 items-center justify-center rounded-full top-1/2 -translate-y-1/2 z-10 cursor-pointer hover:bg-white/80 hover:shadow-md transform hover:scale-105 disabled:cursor-not-allowed disabled:scale-100 disabled:bg-white/60 transition"
           :disabled="isNextBtnDisabled"
         >
-          <FontAwesomeIcon :icon="faChevronRight" />
+          <FontAwesomeIcon
+            width-auto
+            class="w-2.5 h-4"
+            :icon="faChevronRight"
+          />
+        </button>
+      </template>
+    </div>
+
+    <template v-if="hasNavigation && !hasDots">
+      <div class="SlideBtns flex py-2.5 px-0 absolute w-18 justify-between z-1">
+        <button
+          type="button"
+          aria-label="left"
+          class="text-black border-2 border-transparent rounded-full h-8 w-8 flex justify-center items-center bg-neutral-100 transition duration-200 ease"
+          @click="goToPrev($event)"
+          @keyUp="goToPrev($event)"
+          :disabled="isPrevBtnDisabled"
+        >
+          <FontAwesomeIcon width-auto class="w-2.5 h-4" :icon="faChevronLeft" />
+        </button>
+        <button
+          type="button"
+          aria-label="right"
+          class="text-black border-2 border-transparent rounded-full h-8 w-8 flex justify-center items-center bg-neutral-100 transition duration-200 ease"
+          @click="goToNext($event)"
+          @keyUp="goToNext($event)"
+          :disabled="isNextBtnDisabled"
+        >
+          <FontAwesomeIcon
+            width-auto
+            class="w-2.5 h-4"
+            :icon="faChevronRight"
+          />
         </button>
       </div>
     </template>
+
+    <!-- Dots Indicator [WIP] -->
     <template v-if="hasDots && !hasNavigation">
       <div class="Dots">
         <button
@@ -61,7 +111,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useGlobalStore } from '@/stores/global';
 
-const props = defineProps<{
+interface EsliderProps {
   data: {
     id: number;
     image: string;
@@ -70,7 +120,14 @@ const props = defineProps<{
   carouselId?: string;
   hasNavigation?: boolean;
   hasDots?: boolean;
-}>();
+  overlayBtns?: boolean;
+}
+
+const props = withDefaults(defineProps<EsliderProps>(), {
+  hasNavigation: false,
+  overlayBtns: true,
+  hasDots: false,
+});
 
 const globalStore = useGlobalStore();
 const scrollContainerRef = useTemplateRef<HTMLElement>('scrollContainerRef');
@@ -82,6 +139,10 @@ const currentSlide = ref(0);
 const isLastSlide = (data: typeof props.data, index: number) => {
   return data?.length - 1 === index ? '0' : '2%';
 };
+
+onMounted(() => {
+  resetSlider();
+});
 
 /**
  * Function to go to current slide
@@ -104,6 +165,7 @@ const scrollToSlide = (slide: number) => {
 const goToPrev = (e?: any) => {
   if (e.type === 'click' || e?.key === 'space' || e?.key === 'ArrowLeft') {
     const currentRef = currentSlide.value - 1;
+    nextTick();
     scrollToSlide(currentRef);
     if (scrollContainerRef.value?.scrollLeft === 0) {
       isPrevBtnDisabled.value = true;
@@ -119,6 +181,7 @@ const goToPrev = (e?: any) => {
 const goToNext = (e?: any) => {
   if (e.type === 'click' || e?.key === 'space' || e?.key === 'ArrowRight') {
     const currentRef = currentSlide.value + 1;
+    nextTick();
     scrollToSlide(currentRef);
     if (
       scrollContainerRef.value &&
@@ -217,16 +280,7 @@ const resetSlider = () => {
 </script>
 
 <style scoped>
-/* @use '../../assets/scss/variables'; */
-
 .Eslider {
-  display: flex;
-  overflow-x: auto;
-  margin: 0 auto;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-
   .Slide {
     min-width: 250px;
     min-height: 250px;
@@ -261,6 +315,7 @@ const resetSlider = () => {
       position: absolute;
       top: 0;
       left: 0;
+      border-radius: 8px;
     }
 
     .OverlayText {
@@ -297,25 +352,7 @@ const resetSlider = () => {
 }
 
 .SlideBtns {
-  display: flex;
-  padding: 10px 0;
-  position: absolute;
-  width: 75px;
-  justify-content: space-between;
-  z-index: 1;
-
   button {
-    color: black;
-    border: 2px solid transparent;
-    border-radius: 50%;
-    height: 35px;
-    width: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #efefef;
-    transition: all 0.2s ease;
-
     @media (hover: hover) {
       &:hover:not(:disabled) {
         cursor: pointer;
@@ -365,6 +402,19 @@ const resetSlider = () => {
   &:active,
   &.ActiveDot {
     background: var(--secondary-color);
+  }
+}
+
+/* Overlay Button styles */
+.overlay-buttons {
+  display: none;
+
+  @media (hover: hover) {
+    display: none;
+
+    @media (min-width: 640px) {
+      display: flex;
+    }
   }
 }
 
