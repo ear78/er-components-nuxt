@@ -16,7 +16,11 @@
         </button>
       </template>
 
-      <div ref="scrollContainerRef" @scroll="handleScroll" class="Eslider">
+      <div
+        ref="scrollContainerRef"
+        @scroll="handleScroll"
+        class="Eslider flex overflow-auto my-0 mx-auto scroll-smooth scrollbar-none snap-x snap-mandatory"
+      >
         <div
           v-for="(slide, i) in data"
           :key="slide.id"
@@ -27,8 +31,10 @@
           }"
           :class="`Slide ${globalStore.isAppLoading ? 'isBlurred' : ''} rounded-lg`"
         >
-          <div class="OverlayText">{{ slide.text }}</div>
-          <div class="Overlay rounded-lg" />
+          <div class="OverlayText">
+            {{ slide.text }}
+          </div>
+          <div class="Overlay" />
         </div>
       </div>
 
@@ -52,10 +58,11 @@
     </div>
 
     <template v-if="hasNavigation && !hasDots">
-      <div class="SlideBtns">
+      <div class="SlideBtns flex py-2.5 px-0 absolute w-18 justify-between z-1">
         <button
           type="button"
           aria-label="left"
+          class="text-black border-2 border-transparent rounded-full h-8 w-8 flex justify-center items-center bg-neutral-100 transition duration-200 ease"
           @click="goToPrev($event)"
           @keyUp="goToPrev($event)"
           :disabled="isPrevBtnDisabled"
@@ -65,6 +72,7 @@
         <button
           type="button"
           aria-label="right"
+          class="text-black border-2 border-transparent rounded-full h-8 w-8 flex justify-center items-center bg-neutral-100 transition duration-200 ease"
           @click="goToNext($event)"
           @keyUp="goToNext($event)"
           :disabled="isNextBtnDisabled"
@@ -273,13 +281,6 @@ const resetSlider = () => {
 
 <style scoped>
 .Eslider {
-  display: flex;
-  overflow-x: auto;
-  margin: 0 auto;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-
   .Slide {
     min-width: 250px;
     min-height: 250px;
@@ -314,6 +315,7 @@ const resetSlider = () => {
       position: absolute;
       top: 0;
       left: 0;
+      border-radius: 8px;
     }
 
     .OverlayText {
@@ -350,25 +352,7 @@ const resetSlider = () => {
 }
 
 .SlideBtns {
-  display: flex;
-  padding: 10px 0;
-  position: absolute;
-  width: 75px;
-  justify-content: space-between;
-  z-index: 1;
-
   button {
-    color: black;
-    border: 2px solid transparent;
-    border-radius: 50%;
-    height: 35px;
-    width: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #efefef;
-    transition: all 0.2s ease;
-
     @media (hover: hover) {
       &:hover:not(:disabled) {
         cursor: pointer;
