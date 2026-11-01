@@ -6,7 +6,7 @@
       <div
         class="left w-full lg:w-1/3 bg-black min-h-50 h-full flex justify-center items-center rounded-lg md:mb-0"
       >
-        <PageTitle title="Dropper" :color="{ color: colors.hotPink }" />
+        <PageTitle title="Dropper" gradient />
       </div>
       <div class="right w-full lg:w-2/3">
         <Dropper

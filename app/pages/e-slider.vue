@@ -1,6 +1,6 @@
 <template>
   <section>
-    <PageTitle title="EasySlider" class="mb-10" />
+    <PageTitle title="EasySlider" gradient class="mb-10" />
     <Eslider
       :data="esliderData"
       :has-navigation="pageSettings?.settings.hasNavigation"

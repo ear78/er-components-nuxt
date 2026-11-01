@@ -74,7 +74,7 @@ import Hamburger from '~/components/Hamburger/Hamburger.vue';
 import DarkModeButton from '~/components/DarkModeButton/DarkModeButton.vue';
 import { useGlobalStore } from '~/stores/global';
 import logo from '@/assets/img/er-logo.svg?url';
-import { Routes } from '~/assets/js/constants';
+import { Routes } from '~/assets/js/constants/routes';
 
 const globalStore = useGlobalStore();
 const isMenuActive = ref(false);
@@ -240,7 +240,6 @@ const resetPageLoad = () => {
   }
 
   @media (min-width: 1024px) {
-
     .NavMobile {
       visibility: hidden;
     }

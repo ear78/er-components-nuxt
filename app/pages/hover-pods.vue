@@ -2,7 +2,7 @@
   <section
     class="hover-pods-view transition duration-500 ease-in-out bg-neutral-100 pt-10 pb-19 relative min-h-dvh md:min-h-87 lg:min-h-100 rounded-lg dark:bg-neutral-800"
   >
-    <PageTitle title="HoverPods" />
+    <PageTitle title="HoverPods" gradient />
     <HoverPods
       :delay="100"
       :podData="podData"

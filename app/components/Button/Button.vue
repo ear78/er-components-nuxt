@@ -1,5 +1,6 @@
 <template>
   <button
+    v-if="type === 'button'"
     type="button"
     @click="$emit('btnClick')"
     :style="{ ...sx }"
@@ -10,22 +11,58 @@
       <FontAwesomeIcon class="Arrow" :icon="faArrowRight" />
     </a>
   </button>
+  <a
+    v-else-if="type === 'icon'"
+    :href="href"
+    :aria-label="iconLabel"
+    class="bg-black h-10 w-10 text-white pl-3 flex items-center justify-start rounded-full cursor-pointer group transition-all duration-150 ease-in-out hover:w-16 relative"
+    :target="isTarget"
+  >
+    <FontAwesomeIcon
+      v-if="icon"
+      :icon="icon"
+      class="group-hover:absolute"
+      width-auto
+    />
+    <span
+      class="w-0 transition duration-300 delay-50 invisible opacity-0 group-hover:opacity-100 group-hover:visible group-hover:w-full transform group-hover:translate-x-3/5 pt-0.5"
+    >
+      <FontAwesomeIcon :icon="faAngleRight" width-auto />
+    </span>
+  </a>
 </template>
 
 <script setup lang="ts">
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
-const props = defineProps<{
+interface ButtonProps {
+  /** Types: button, icon */
+  type?: string;
   isDarkMode?: boolean;
+  /** Sets the href */
   href?: string;
+  /** Primary styles */
   primary?: boolean;
+  /** Secondary styles */
   secondary?: boolean;
+  /** Tertiary styles */
   tertiary?: boolean;
+  /** Sets the target for links */
   target?: boolean;
+  /** Centers the button */
   center?: boolean;
+  /** Custom styles that sets the style attribute */
   sx?: Object | null;
-}>();
+  /** Icon link button */
+  icon?: object;
+  /** aria label text */
+  iconLabel?: string;
+}
+
+const props = withDefaults(defineProps<ButtonProps>(), {
+  type: 'button',
+});
 
 defineEmits(['btnClick']);
 

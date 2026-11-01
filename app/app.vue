@@ -35,7 +35,7 @@ import BackToTopButton from '@/components/BackToTopButton/BackToTopButton.vue';
 import { useGlobalStore } from '@/stores/global';
 import ComponentSettings from '@/components/ComponentSettings.vue';
 import { formData as componentFormData } from '@/assets/js/formData';
-import { PathName } from '@/assets/js/constants';
+import { PathName } from '~/assets/js/constants/routes';
 
 const location = useRoute();
 const globalStore = useGlobalStore();
