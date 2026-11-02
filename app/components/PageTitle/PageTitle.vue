@@ -30,7 +30,7 @@ const textColorClasses = computed(() => {
   if (props.color) {
     return props.color;
   }
-  return 'dark:text-pink-600';
+  return '';
 });
 
 const gradientClasses = computed(() => {
