@@ -21,7 +21,7 @@ import { useGlobalStore } from '@/stores/global';
 import type { ComponentSettings } from '@/stores/global';
 import { handleForm } from '~/assets/js/util/helpers';
 import type { FormField } from '@/assets/js/formData';
-import { PathName } from '~/assets/js/constants';
+import { PathName } from '~/assets/js/constants/routes';
 
 const props = withDefaults(
   defineProps<{

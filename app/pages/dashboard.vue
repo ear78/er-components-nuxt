@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard">
-    <PageTitle title="Dashboard" class="mb-12" />
+    <PageTitle title="Dashboard" gradient class="mb-12" />
     <div class="grid md:grid-cols-[25%_minmax(0,1fr)] gap-5">
       <div class="w-full relative">
         <User />

@@ -1,12 +1,12 @@
 <template>
   <section class="dropper-parent flex flex-col md:flex-row">
     <div
-      class="dropper-wrapper flex flex-col md:flex-row border border-neutral-200 rounded-lg p-4 md:p-6 gap-4"
+      class="dropper-wrapper flex flex-col md:flex-row border border-neutral-200 rounded-lg p-4 md:p-6 gap-4 dark:border-neutral-700"
     >
       <div
-        class="left w-full lg:w-1/3 bg-black min-h-50 h-full flex justify-center items-center rounded-lg md:mb-0"
+        class="left w-full lg:w-1/3 bg-black min-h-50 h-full flex justify-center items-center rounded-lg md:mb-0 dark:bg-neutral-900"
       >
-        <PageTitle title="Dropper" :color="{ color: colors.hotPink }" />
+        <PageTitle title="Dropper" gradient />
       </div>
       <div class="right w-full lg:w-2/3">
         <Dropper
@@ -25,5 +25,4 @@
 <script setup lang="ts">
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { dropperData } from '~/assets/js/data';
-import colors from '@/assets/js/colors';
 </script>

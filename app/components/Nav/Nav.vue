@@ -2,7 +2,7 @@
   <div
     ref="navRef"
     :class="[
-      'NavContainer fixed transform transition duration-300 ease-in-out w-full left-0 z-50 flex items-center justify-between box-border shadow-[0_5px_15px_-5px_rgba(0,0,0,.06)] py-4 md:py-6 border-b border-gray-200 mb-10 px-2 md:px-4 bg-white dark:bg-black',
+      'NavContainer fixed transform transition duration-300 ease-in-out w-full left-0 z-50 flex items-center justify-between box-border shadow-[0_5px_15px_-5px_rgba(0,0,0,.06)] py-4 md:py-6 border-b border-gray-200 mb-10 px-2 md:px-4 bg-white dark:bg-black dark:border-neutral-700',
       dynamicNavClasses,
     ]"
   >
@@ -31,7 +31,7 @@
           <NuxtLink
             :to="item.route"
             :class="`Link
-            ${pathname.path === item.route ? 'selected' : ''}`"
+            ${pathname.path === item.route ? 'selected' : ''} text-neutral-900 dark:text-neutral-700`"
             @click="resetPageLoad"
           >
             {{ item.text }}
@@ -54,7 +54,7 @@
             :class="`Link transition
             duration-100 ease-in-out ${
               pathname.path === item.route ? 'selected' : ''
-            }`"
+            } text-neutral-900 dark:text-neutral-700`"
             @click="resetPageLoad"
           >
             {{ item.text }}
@@ -74,7 +74,7 @@ import Hamburger from '~/components/Hamburger/Hamburger.vue';
 import DarkModeButton from '~/components/DarkModeButton/DarkModeButton.vue';
 import { useGlobalStore } from '~/stores/global';
 import logo from '@/assets/img/er-logo.svg?url';
-import { Routes } from '~/assets/js/constants';
+import { Routes } from '~/assets/js/constants/routes';
 
 const globalStore = useGlobalStore();
 const isMenuActive = ref(false);
@@ -150,7 +150,7 @@ const resetPageLoad = () => {
     }
 
     a {
-      color: var(--primary-color);
+      /* color: var(--primary-color); */
       text-transform: uppercase;
       font-weight: bold;
       font-size: 0.8rem;
@@ -240,7 +240,6 @@ const resetPageLoad = () => {
   }
 
   @media (min-width: 1024px) {
-
     .NavMobile {
       visibility: hidden;
     }

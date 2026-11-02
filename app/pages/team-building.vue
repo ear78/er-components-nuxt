@@ -1,7 +1,6 @@
-
 <template>
   <div :class="`TeamBuilding ${globalStore.isDarkMode ? 'Dark' : ''}`">
-    <PageTitle title="TeamBuilding" />
+    <PageTitle title="TeamBuilding" gradient />
     <ClientOnly>
       <TeamCard
         :delay="100"

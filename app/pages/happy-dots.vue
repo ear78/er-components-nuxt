@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <PageTitle title="HappyDots" class="mb-10" />
+    <PageTitle title="HappyDots" gradient class="mb-10" />
 
     <div class="">
       <Dots
