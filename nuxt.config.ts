@@ -2,7 +2,12 @@
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
-  modules: ['@nuxt/image', '@pinia/nuxt', '@netlify/nuxt'],
+  modules: [
+    '@nuxt/image',
+    '@pinia/nuxt',
+    '@netlify/nuxt',
+    '@nuxt/test-utils/module',
+  ],
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   app: {
