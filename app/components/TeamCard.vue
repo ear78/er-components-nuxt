@@ -8,7 +8,7 @@
         :class="`Member TC ${!isLoading ? 'fadeIn' : ''}`"
       >
         <div
-          :class="`MemberHoverTrigger AltLayout ${isDarkMode ? 'Dark' : ''} transition duration-500`"
+          :class="`MemberHoverTrigger AltLayout ${isDarkMode ? 'Dark' : ''} transition duration-300`"
         >
           <div class="AltLayoutLeft">
             <img class="Image" :src="member.image" :alt="member.name" />
@@ -42,7 +42,7 @@
         :class="`Member TC ${!isLoading ? 'fadeIn' : ''}`"
       >
         <div
-          :class="`MemberHoverTrigger ${isDarkMode ? 'Dark' : ''} transition duration-500`"
+          :class="`MemberHoverTrigger ${isDarkMode ? 'Dark' : ''} transition duration-300`"
         >
           <img class="Image" :src="member.image" :alt="member.name" />
           <h3 :class="`Name ${isDarkMode ? 'Dark' : ''}`">
@@ -76,7 +76,6 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import logo from '@/assets/img/er-logo.svg';
 import { teamMembers } from '~/assets/js/data';
-import { useLoadingIndicator } from '#app';
 
 interface TeamCardProps {
   delay?: number;
@@ -116,13 +115,19 @@ onMounted(() => {
       &:hover .MemberHoverTrigger,
       &:hover .MemberHoverTrigger.Dark {
         border-color: var(--secondary-color);
+        box-shadow: 0px 5px 10px -3px rgba(0, 0, 0, 0.3);
         cursor: pointer;
         transform: scale(1.03);
+      }
+
+      &:hover .MemberHoverTrigger::after {
+        transform: scaleX(1);
       }
     }
 
     .MemberHoverTrigger {
       position: relative;
+      overflow: hidden;
       transition:
         transform 0.2s ease 0ms,
         border-color 0.2s ease 0ms,
@@ -133,7 +138,23 @@ onMounted(() => {
       box-sizing: border-box;
       box-shadow: 0 3px 8px rgba(0, 0, 0, 0.03);
       background: #fff;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.03);
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--secondary-color),
+          var(--secondary-color)
+        );
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.35s;
+      }
 
       &.Dark {
         border: 1px solid transparent;
