@@ -54,7 +54,7 @@
             :class="`Link transition
             duration-100 ease-in-out ${
               pathname.path === item.route ? 'selected' : ''
-            } text-neutral-900 dark:text-neutral-700`"
+            } text-neutral-800 dark:text-neutral-700`"
             @click="resetPageLoad"
           >
             {{ item.text }}
@@ -150,7 +150,6 @@ const resetPageLoad = () => {
     }
 
     a {
-      /* color: var(--primary-color); */
       text-transform: uppercase;
       font-weight: bold;
       font-size: 0.8rem;
@@ -208,7 +207,6 @@ const resetPageLoad = () => {
     }
 
     a {
-      color: var(--primary-color);
       text-transform: uppercase;
       font-weight: bold;
       font-size: 0.8rem;
