@@ -1,9 +1,9 @@
 <template>
   <div :class="`UserSkeleton ${!userDataReady ? 'FadeIn' : 'UserTransition'}`">
-    <p class="Image" />
-    <p class="Name" />
-    <p class="Username" />
-    <p class="Description" />
+    <Skeleton custom="w-43 h-43 bg-neutral-200 rounded-full mt-2 mb-3" />
+    <Skeleton custom="w-1/2 h-7 bg-neutral-200 rounded-lg mb-2" />
+    <Skeleton custom="w-2/6 h-7 bg-neutral-200 rounded-lg mb-2" />
+    <Skeleton custom="w-full h-28 bg-neutral-200 rounded-lg" />
   </div>
   <section :class="`User UserTransition ${userDataReady ? 'FadeIn' : ''}`">
     <img :src="gitData.avatar_url" :alt="`${gitData.type} ${gitData.login}`" />
@@ -65,95 +65,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.UserSkeleton {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-
-  .Image {
-    height: 100px;
-    width: 100px;
-    margin: 0.5rem 0;
-    background-color: var(--gray-200);
-    border-radius: 50%;
-    position: relative;
-
-    &::before {
-      position: absolute;
-      background: var(--gray-500);
-      content: '';
-      border-radius: 50%;
-      height: 100px;
-      width: 100px;
-      filter: blur(0px);
-      top: 0;
-      left: 0;
-      background-size: 100%;
-      animation: pulse 2s ease infinite;
-    }
-
-    @media (min-width: 768px) {
-      height: 175px;
-      width: 175px;
-
-      &::before {
-        width: 175px;
-        height: 175px;
-      }
-    }
-  }
-
-  .Name {
-    width: 50%;
-    height: 2rem;
-  }
-
-  .Username {
-    width: 35%;
-    height: 2rem;
-  }
-
-  .Description {
-    height: 5rem;
-  }
-
-  .Name,
-  .Username,
-  .Description {
-    position: relative;
-    background: var(--gray-200);
-    border-radius: 8px;
-
-    &::before {
-      position: absolute;
-      background: var(--gray-500);
-      content: '';
-      border-radius: 8px;
-      height: 100%;
-      width: 100%;
-      filter: blur(0px);
-      top: 0;
-      left: 0;
-      background-size: 100%;
-      animation: pulse 2s ease infinite;
-    }
-  }
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 0.5;
-  }
-
-  50% {
-    opacity: 0.2;
-  }
-
-  100% {
-    opacity: 0.5;
-  }
-}
-
 .User {
   display: flex;
   flex-direction: column;
