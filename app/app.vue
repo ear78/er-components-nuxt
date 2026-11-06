@@ -27,9 +27,9 @@
         </p>
         <Tabs
           class="py-10"
-          :data="tabData"
+          :data="tabHeaderData"
           header-alignment="center"
-          :default-tab="1"
+          :default-tab="2"
           v-model:selected-tab="selectedTab"
         >
           <TabContent
@@ -38,9 +38,7 @@
             :selected-tab="selectedTab"
             class="w-full"
           >
-            <div
-              class="p-10 border border-neutral-200 rounded-lg shadow-md"
-            >
+            <div class="p-10 border border-neutral-200 rounded-lg shadow-md">
               <img
                 :src="tab.img"
                 :alt="tab.title.text"
@@ -86,24 +84,20 @@ import ComponentSettings from '@/components/ComponentSettings.vue';
 import { formData as componentFormData } from '@/assets/js/formData';
 import { PathName } from '~/assets/js/constants/routes';
 import { tabsData } from '~/assets/js/data';
+import Tabs from '@/components/Tabs/Tabs.vue';
+import TabContent from '@/components/Tabs/TabContent.vue';
 
 const location = useRoute();
 const globalStore = useGlobalStore();
 const selectedTab = ref(0);
 
-// const setSelectedTab = (id: number) => {
-//   selectedTab.value = id;
-// };
-
-const tabData = [
+const tabHeaderData = [
   {
     id: 0,
     name: 'Bikes',
   },
   { id: 1, name: 'Accessories' },
   { id: 2, name: 'Gear' },
-  // { id: 3, name: 'Market Place' },
-  // { id: 4, name: 'Collective' },
 ];
 
 const selectedFormData = computed(() => {

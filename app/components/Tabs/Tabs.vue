@@ -4,8 +4,6 @@
       <header
         class="p-0.5 border border-transparent rounded-lg inline-flex items-center justify-center gap-3 bg-neutral-200"
       >
-        <!-- selectedTab = tab.id -->
-        <!-- @click="$emit('selectedTab', tab.id)" -->
         <button
           v-for="(tab, index) in data"
           @click="updateTabs(index)"
@@ -56,7 +54,6 @@ const selectedTab = defineModel('selectedTab');
 const tabsComponent = useTemplateRef('tabsComponent');
 const contentRef = useTemplateRef('contentRef');
 const slotContentRef = useTemplateRef('slotContentRef');
-// const selectedTab = ref(0);
 
 // Sets the container height for absolute positioned tabs
 const contentContainerHeight = ref(0);
@@ -71,7 +68,7 @@ const headerAlignment = computed(() => {
 
 onMounted(() => {
   // Set initial tab
-  // selectedTab.value = props?.defaultTab ?? 0;
+  selectedTab.value = props?.defaultTab ?? 0;
   const children = Array.from(slotContentRef.value?.children ?? []);
   // let highest = 0;
   // const calcContainerHeight = children.map((el: any) => {
