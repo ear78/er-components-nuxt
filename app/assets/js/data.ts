@@ -22,6 +22,7 @@ import EasySlider from '/img/easyslider-screenshot.webp';
 import pinkBuildingWebp from '@/assets/img/pinkBuilding.webp';
 import pinkBuildingWebpSm from '@/assets/img/pinkBuilding-sm.webp';
 import pinkBuildingJpg from '@/assets/img/pinkBuilding.jpg';
+import logo from '@/assets/img/er-logo.svg';
 
 export const bannerImgWebp = pinkBuildingWebp;
 export const bannerImgWebpSm = pinkBuildingWebpSm;
@@ -218,28 +219,6 @@ export const sectionData = [
   },
 ];
 
-// export const podData = [
-//   { podBgImage: echoTowerSml,
-//     podBgColor: '#000000ad',
-//     podTextColor: '#fff',
-//     podText: 'Hello'
-//   },
-//   { podBgImage: chairsSml,
-//     podBgColor: '#000000ad',
-//     podTextColor: '#fff',
-//     podText: 'I\'m'
-//   },
-//   { podBgImage: '/building-resize.jpg',
-//     podBgColor: '#000000ad',
-//     podTextColor: '#fff',
-//     podText: 'A'
-//   },
-//   { podBgImage: stripesSml,
-//     podBgColor: '#000000ad',
-//     podTextColor: '#fff',
-//     podText: 'Hover Pod'
-//   },
-// ]
 export const dropperData = [
   {
     id: 0,
@@ -366,89 +345,6 @@ export const forms = [
     },
   ],
 ];
-
-// export const teamMembers = [
-//   {
-//     image: '/UserMale.svg',
-//     name: 'Jack Reacher',
-//     jobTitle: 'Professional Hitman',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-//   {
-//     image: '/femaleUser.svg',
-//     name: 'David Mattias',
-//     jobTitle: 'General Manager',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-//   {
-//     image: '/UserMale.svg',
-//     name: 'Elias Leonard',
-//     jobTitle: 'Head of Technology',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-//   {
-//     image: '/femaleUser.svg',
-//     name: 'Megan Kimberly',
-//     jobTitle: 'Art Director',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-//   {
-//     image: '/UserMale.svg',
-//     name: 'Johnny Reb',
-//     jobTitle: 'Computerist',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-//   {
-//     image: '/femaleUser.svg',
-//     name: 'Paran John',
-//     jobTitle: 'Senior Developer',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-//   {
-//     image: '/UserMale.svg',
-//     name: 'Elias Leonard',
-//     jobTitle: 'Head of Technology',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-//   {
-//     image: '/femaleUser.svg',
-//     name: 'Megan Kimberly',
-//     jobTitle: 'Art Director',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-//   {
-//     image: '/UserMale.svg',
-//     name: 'David Mattias',
-//     jobTitle: 'General Manager',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-//   {
-//     image: '/femaleUser.svg',
-//     name: 'Elias Leonard',
-//     jobTitle: 'Head of Technology',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-// ];
 
 export const teamMembers = [
   {
@@ -593,3 +489,98 @@ export const esliderData: any = [
     text: 'Musical Chairs.',
   },
 ];
+
+export const tabsData: any = [
+  {
+    id: 0,
+    img: logo,
+    title: 'Free',
+    subTitle: 'Try Ai Tools',
+    pricing: {
+      price: '$0',
+      info: 'Try Ai Tools for free',
+    },
+    button: {
+      href: 'https://elliotrichardson.com',
+      text: 'Learn more',
+      target: true,
+    },
+    specs: [
+      'Chat on web',
+      'desktop, and mobile',
+      'Search the web',
+      'create files, and run code',
+      'Memory across conversations',
+      'Connect your apps and tools',
+      'Create Artifacts',
+      'Ai Tools Design, Slides, Docs',
+    ],
+  },
+  {
+    id: 1,
+    img: logo,
+    title: 'Pro',
+    subTitle: 'For everyday work',
+    pricing: {
+      price: '$20',
+      info: 'Per month with annual subscription discount ($200 billed up front). $20 if billed monthly.',
+    },
+    button: {
+      href: 'https://elliotrichardson.com',
+      text: 'Learn more',
+      target: true,
+    },
+    specs: [
+      'Chat on web',
+      'desktop, and mobile',
+      'Search the web',
+      'create files, and run code',
+      'Memory across conversations',
+      'Connect your apps and tools',
+      'Create Artifacts',
+      'Claude Design, Slides, Docs',
+      'Claude Science',
+      'Claude in Chrome and Microsoft 365',
+      'More Ai Tools models',
+    ],
+  },
+  {
+    id: 2,
+    img: logo,
+    title: 'Max',
+    subTitle: 'For people who work with Ai tools all day',
+    pricing: {
+      price: 'From $100',
+      info: 'Per Month',
+    },
+    button: {
+      href: 'https://elliotrichardson.com',
+      text: 'Learn more',
+      target: true,
+    },
+    specs: [
+      'Choose 5x or 20x more usage than Pro*',
+      'Chat on web',
+      'desktop, and mobile',
+      'Search the web',
+      'create files, and run code',
+      'Memory across conversations',
+      '$100 to $200/month in API credits to build on the Ai Tools Platform',
+    ],
+  },
+];
+// accessories: [
+//   {
+//     id: 0,
+//     img: logo,
+//     title: 'Rider profile',
+//     subTitle: 'Miles for the week',
+//   },
+//   {
+//     id: 1,
+//     img: logo,
+//     title: 'Rider Stats',
+//     subTitle: 'Stats for the month',
+//   },
+// ],
+// gear: [],
