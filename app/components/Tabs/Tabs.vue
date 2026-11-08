@@ -32,7 +32,7 @@
       </template>
 
       <!-- Slot for custom mixed content -->
-      <div ref="slotContentRef">
+      <div class="slot-wrapper" ref="slotContentRef">
         <slot />
       </div>
     </div>

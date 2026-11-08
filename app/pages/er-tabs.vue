@@ -51,7 +51,7 @@
         </div>
       </template>
       <template v-if="key === 'profile'">
-        <div class="grid grid-cols-2 gap-2 w-screen">
+        <div class="grid grid-cols-2 gap-2">
           <div
             v-for="content in tab"
             class="border border-neutral-200 shadow-md rounded-lg p-0.5 text-neutral-500"
@@ -68,6 +68,7 @@
               <p class="mb-1">{{ content.subTitle }}</p>
               <p class="text-sm">- {{ content.miles }}</p>
               <p class="text-sm">- {{ content.speed }}</p>
+              <p class="text-sm pt-2">{{ content.copy }}</p>
             </div>
           </div>
         </div>
