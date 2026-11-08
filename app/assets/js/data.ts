@@ -7,6 +7,7 @@ import stairway from '/img/stairway.webp';
 import stripes from '/img/stripes.webp';
 import chairs from '/img/chairs.webp';
 import echoTowerSml from '@/assets/img/echoTower-sml.jpg';
+import ErTabs from '/img/tabs-screenshot.webp';
 // import jailSml from '../img/jail-sml.jpg'
 // import stairwaySml from '../img/stairway-sml.jpg'
 import stripesSml from '@/assets/img/stripes-sml.jpg';
@@ -98,6 +99,14 @@ export const pageSectionData = [
     It takes a title prop and passes the content as children`,
     img: EasySlider,
     page: '/e-slider',
+  },
+  {
+    id: 6,
+    title: 'ER Tabs Component',
+    component: 'ER Tabs',
+    description: `The ER Tabs Component is a data driven tabs component. Setup a basic set of tabs with no configuration, or setup a fully custom set of tabs with custom slots.`,
+    img: ErTabs,
+    page: '/er-tabs',
   },
 ];
 
@@ -490,97 +499,128 @@ export const esliderData: any = [
   },
 ];
 
-export const tabsData: any = [
-  {
-    id: 0,
-    img: logo,
-    title: 'Free',
-    subTitle: 'Try Ai Tools',
-    pricing: {
-      price: '$0',
-      info: 'Try Ai Tools for free',
+export const tabsData: any = {
+  columns: [
+    {
+      id: 0,
+      img: logo,
+      title: 'Free',
+      subTitle: 'Try Ai Tools',
+      pricing: {
+        price: '$0',
+        info: 'Try Ai Tools for free',
+      },
+      button: {
+        href: 'https://elliotrichardson.com',
+        text: 'Learn more',
+        target: true,
+      },
+      specs: [
+        'Chat on web',
+        'desktop, and mobile',
+        'Search the web',
+        'create files, and run code',
+        'Memory across conversations',
+        'Connect your apps and tools',
+        'Create Artifacts',
+        'Ai Tools Design, Slides, Docs',
+      ],
     },
-    button: {
-      href: 'https://elliotrichardson.com',
-      text: 'Learn more',
-      target: true,
+    {
+      id: 1,
+      img: logo,
+      title: 'Pro',
+      subTitle: 'For everyday work',
+      pricing: {
+        price: '$20',
+        info: 'Per month with annual subscription discount ($200 billed up front). $20 if billed monthly.',
+      },
+      button: {
+        href: 'https://elliotrichardson.com',
+        text: 'Learn more',
+        target: true,
+      },
+      specs: [
+        'Chat on web',
+        'desktop, and mobile',
+        'Search the web',
+        'create files, and run code',
+        'Memory across conversations',
+        'Connect your apps and tools',
+        'Create Artifacts',
+        'Claude Design, Slides, Docs',
+        'Claude Science',
+        'Claude in Chrome and Microsoft 365',
+        'More Ai Tools models',
+      ],
     },
-    specs: [
-      'Chat on web',
-      'desktop, and mobile',
-      'Search the web',
-      'create files, and run code',
-      'Memory across conversations',
-      'Connect your apps and tools',
-      'Create Artifacts',
-      'Ai Tools Design, Slides, Docs',
-    ],
-  },
-  {
-    id: 1,
-    img: logo,
-    title: 'Pro',
-    subTitle: 'For everyday work',
-    pricing: {
-      price: '$20',
-      info: 'Per month with annual subscription discount ($200 billed up front). $20 if billed monthly.',
+    {
+      id: 2,
+      img: logo,
+      title: 'Max',
+      subTitle: 'For people who work with Ai tools all day',
+      pricing: {
+        price: 'From $100',
+        info: 'Per Month',
+      },
+      button: {
+        href: 'https://elliotrichardson.com',
+        text: 'Learn more',
+        target: true,
+      },
+      specs: [
+        'Choose 5x or 20x more usage than Pro*',
+        'Chat on web',
+        'desktop, and mobile',
+        'Search the web',
+        'create files, and run code',
+        'Memory across conversations',
+        '$100 to $200/month in API credits to build on the Ai Tools Platform',
+      ],
     },
-    button: {
-      href: 'https://elliotrichardson.com',
-      text: 'Learn more',
-      target: true,
+  ],
+  profile: [
+    {
+      id: 0,
+      img: logo,
+      title: 'Rider profile',
+      subTitle: 'Miles for the week',
+      miles: '37mi',
+      speed: '5.6mph',
     },
-    specs: [
-      'Chat on web',
-      'desktop, and mobile',
-      'Search the web',
-      'create files, and run code',
-      'Memory across conversations',
-      'Connect your apps and tools',
-      'Create Artifacts',
-      'Claude Design, Slides, Docs',
-      'Claude Science',
-      'Claude in Chrome and Microsoft 365',
-      'More Ai Tools models',
-    ],
-  },
-  {
-    id: 2,
-    img: logo,
-    title: 'Max',
-    subTitle: 'For people who work with Ai tools all day',
-    pricing: {
-      price: 'From $100',
-      info: 'Per Month',
+    {
+      id: 1,
+      img: logo,
+      title: 'Rider Stats',
+      subTitle: 'Stats for the month',
+      miles: '37mi',
+      speed: '5.6mph',
     },
-    button: {
-      href: 'https://elliotrichardson.com',
-      text: 'Learn more',
-      target: true,
+  ],
+  gear: [
+    {
+      id: 0,
+      img: echoTower,
+      title: 'Gear profile',
+      subTitle: 'Gear for the week',
+      specs: [
+        'Chat on web',
+        'desktop, and mobile',
+        'Search the web',
+        'create files, and run code',
+      ],
     },
-    specs: [
-      'Choose 5x or 20x more usage than Pro*',
-      'Chat on web',
-      'desktop, and mobile',
-      'Search the web',
-      'create files, and run code',
-      'Memory across conversations',
-      '$100 to $200/month in API credits to build on the Ai Tools Platform',
-    ],
-  },
-];
-// accessories: [
-//   {
-//     id: 0,
-//     img: logo,
-//     title: 'Rider profile',
-//     subTitle: 'Miles for the week',
-//   },
-//   {
-//     id: 1,
-//     img: logo,
-//     title: 'Rider Stats',
-//     subTitle: 'Stats for the month',
-//   },
-// ],
-// gear: [],
+    {
+      id: 1,
+      img: stairway,
+      title: 'Gear Stats',
+      subTitle: 'Gear for the month',
+      specs: [
+        'Chat on web',
+        'desktop, and mobile',
+        'Search the web',
+        'create files, and run code',
+      ],
+    },
+  ],
+};

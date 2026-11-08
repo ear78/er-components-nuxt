@@ -1,14 +1,14 @@
 <template>
   <section ref="pageSection">
     <div :class="`HomeSections LazyLoad ${isIntersecting ? 'Active' : ''}`">
-      <Heading variant="h2" :sx="{ textAlign: 'center', margin: '0 0 1rem' }">
+      <Heading variant="h2" :sx="{ textAlign: 'center' }">
         {{ data.title }}
       </Heading>
-      <p>
+      <p class="text-neutral-600">
         The&nbsp;
-        <b>
+        <b class="text-neutral-900">
           {{ data.component }}
-          &nbsp; Component&nbsp;
+          &nbsp;Component&nbsp;
         </b>
         {{ data.description }}
       </p>

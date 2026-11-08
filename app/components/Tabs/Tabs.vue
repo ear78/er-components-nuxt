@@ -40,20 +40,21 @@
 </template>
 
 <script setup lang="ts">
-const slots = defineSlots();
 const props = defineProps<{
   /** Data can be used to setup your tab headers. Name will name your tab and content can be used to print out
-   * simple text and informative data.
+   * simple text and informative data if you don't need a custom slot.
    */
   data: { id: number; name?: string; content?: string }[];
   defaultTab?: number;
   headerAlignment?: string;
+  fixedHeight?: boolean;
 }>();
 
-const selectedTab = defineModel('selectedTab');
+const selectedTab = defineModel<number, string>('selectedTab');
 const tabsComponent = useTemplateRef('tabsComponent');
 const contentRef = useTemplateRef('contentRef');
 const slotContentRef = useTemplateRef('slotContentRef');
+const resizeObserver = ref<ResizeObserver | null>(null);
 
 // Sets the container height for absolute positioned tabs
 const contentContainerHeight = ref(0);
@@ -69,45 +70,82 @@ const headerAlignment = computed(() => {
 onMounted(() => {
   // Set initial tab
   selectedTab.value = props?.defaultTab ?? 0;
-  const children = Array.from(slotContentRef.value?.children ?? []);
-  // let highest = 0;
-  // const calcContainerHeight = children.map((el: any) => {
-  //   if (el.clientHeight > highest) {
-  //     highest = el.clientHeight;
-  //   }
-  //   return highest;
-  // });
-  const calcContainerHeight = children[0]?.clientHeight;
-  contentContainerHeight.value = calcContainerHeight ?? 0;
-
-  if (!slots.default) {
-    console.log('inside slot check');
-
-    let highest = 0;
-    const calcContainerHeight = contentRef.value?.map((el: HTMLElement) => {
-      if (el.clientHeight > highest) {
-        highest = el.clientHeight;
-      }
-      return highest;
-    });
-    contentContainerHeight.value = calcContainerHeight?.[0] ?? 0;
-  }
 
   if (tabsComponent.value) {
-    const resizeObserver = new ResizeObserver((entries) => {
-      console.log('resizing');
+    const delay = 1000;
+    let containerWidth: number | undefined;
+    resizeObserver.value = new ResizeObserver((entries) => {
+      if (entries && containerWidth !== entries?.[0]?.contentRect.width) {
+        containerWidth = entries?.[0]?.contentRect.width;
+
+        setTimeout(() => {
+          tabHeight();
+        }, delay);
+      }
     });
-    resizeObserver.observe(tabsComponent.value);
+    resizeObserver.value.observe(tabsComponent.value);
   }
+});
+
+onUnmounted(() => {
+  resizeObserver.value?.disconnect();
 });
 
 const isActiveTab = (id: number) => selectedTab.value === id;
 
+// Calculate container height
+const calculateContainerHeight = (refs: any) => {
+  let highest = 0;
+  refs?.map((el: any) => {
+    if (el.clientHeight > highest) {
+      highest = el.clientHeight;
+    }
+    return highest;
+  });
+
+  return highest;
+};
+
+/** Set tab height on tab click or a fixed height when needing a more slideshow type of viewer with no shift */
+const tabHeight = () => {
+  // Gets the internal slot tabs
+  const children = Array.from(slotContentRef.value?.children ?? []);
+  let calcContainerHeight: number | any;
+
+  if (props.fixedHeight) {
+    if (props.data[0]?.content) {
+      calcContainerHeight = calculateContainerHeight(contentRef.value);
+      contentContainerHeight.value = calcContainerHeight ?? 0;
+      return;
+    }
+
+    calcContainerHeight = calculateContainerHeight(children);
+    contentContainerHeight.value = calcContainerHeight ?? 0;
+  } else {
+    if (props.data[0]?.content) {
+      calcContainerHeight =
+        contentRef.value?.[selectedTab?.value ?? 0]?.clientHeight ?? 0;
+      contentContainerHeight.value = calcContainerHeight ?? 0;
+      return;
+    }
+
+    contentContainerHeight.value =
+      children[selectedTab?.value ?? 0]?.clientHeight ?? 0;
+  }
+};
+
 const updateTabs = (id: number) => {
   selectedTab.value = id;
-  const children = Array.from(slotContentRef.value?.children ?? []);
-  const currentTab = children[id];
-  contentContainerHeight.value = currentTab?.clientHeight ?? 0;
-  console.log(contentContainerHeight.value);
 };
+
+watch(
+  selectedTab,
+  (newValue, oldValue) => {
+    if (newValue !== oldValue) {
+      // Wait for selectedTab to be updated
+      tabHeight();
+    }
+  },
+  { immediate: true },
+);
 </script>
