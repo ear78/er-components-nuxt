@@ -15,25 +15,29 @@
         <div class="grid grid-cols-3 gap-6">
           <div
             v-for="content in tab"
-            class="p-10 border border-neutral-200 rounded-lg shadow-md grid grid-rows-[76px_40px_80px_32px_64px_40px_auto]"
+            class="p-10 border border-neutral-200 rounded-lg shadow-md grid grid-rows-subgrid row-span-5 gap-8"
           >
             <img
               :src="content.img"
               :alt="content.title.text"
-              class="w-12 h-12 mb-6"
+              class="w-12 h-12 mb-2"
             />
-            <h3 class="text-4xl font-semibold">{{ content.title }}</h3>
-            <p class="text-lg mb-4">{{ content.subTitle }}</p>
-            <p v-if="content?.pricing" class="font-semibold text-2xl">
-              {{ content.pricing.price }}
-            </p>
-            <p v-if="content?.pricing" class="text-xs text-neutral-500 mb-6">
-              {{ content.pricing.info }}
-            </p>
+            <div class="headings-grp">
+              <h3 class="text-4xl font-semibold">{{ content.title }}</h3>
+              <p class="text-lg">{{ content.subTitle }}</p>
+            </div>
+            <div class="pricing-grp">
+              <p class="font-semibold text-2xl">
+                {{ content.pricing.price }}
+              </p>
+              <p class="text-xs text-neutral-500">
+                {{ content.pricing.info }}
+              </p>
+            </div>
             <Button v-if="content?.button">{{ content.button.text }}</Button>
             <ul
               v-if="content?.specs"
-              class="mt-10 pt-10 border-t border-neutral-200"
+              class="mt-4 pt-10 border-t border-neutral-200"
             >
               <li v-for="spec in content.specs" class="flex gap-4 items-center">
                 <FontAwesomeIcon
