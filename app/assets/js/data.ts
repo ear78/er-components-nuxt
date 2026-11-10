@@ -7,6 +7,9 @@ import stairway from '/img/stairway.webp';
 import stripes from '/img/stripes.webp';
 import chairs from '/img/chairs.webp';
 import echoTowerSml from '@/assets/img/echoTower-sml.jpg';
+import ErTabs from '/img/tabs-screenshot.webp';
+import skiPic from '/img/ski-pic.webp';
+import snowboardPic from '/img/snowboard-pic.webp';
 // import jailSml from '../img/jail-sml.jpg'
 // import stairwaySml from '../img/stairway-sml.jpg'
 import stripesSml from '@/assets/img/stripes-sml.jpg';
@@ -22,6 +25,7 @@ import EasySlider from '/img/easyslider-screenshot.webp';
 import pinkBuildingWebp from '@/assets/img/pinkBuilding.webp';
 import pinkBuildingWebpSm from '@/assets/img/pinkBuilding-sm.webp';
 import pinkBuildingJpg from '@/assets/img/pinkBuilding.jpg';
+import logo from '@/assets/img/er-logo.svg';
 
 export const bannerImgWebp = pinkBuildingWebp;
 export const bannerImgWebpSm = pinkBuildingWebpSm;
@@ -97,6 +101,14 @@ export const pageSectionData = [
     It takes a title prop and passes the content as children`,
     img: EasySlider,
     page: '/e-slider',
+  },
+  {
+    id: 6,
+    title: 'ER Tabs Component',
+    component: 'ER Tabs',
+    description: `The ER Tabs Component is a data driven tabs component. Setup a basic set of tabs with no configuration, or setup a fully custom set of tabs with custom slots.`,
+    img: ErTabs,
+    page: '/er-tabs',
   },
 ];
 
@@ -218,28 +230,6 @@ export const sectionData = [
   },
 ];
 
-// export const podData = [
-//   { podBgImage: echoTowerSml,
-//     podBgColor: '#000000ad',
-//     podTextColor: '#fff',
-//     podText: 'Hello'
-//   },
-//   { podBgImage: chairsSml,
-//     podBgColor: '#000000ad',
-//     podTextColor: '#fff',
-//     podText: 'I\'m'
-//   },
-//   { podBgImage: '/building-resize.jpg',
-//     podBgColor: '#000000ad',
-//     podTextColor: '#fff',
-//     podText: 'A'
-//   },
-//   { podBgImage: stripesSml,
-//     podBgColor: '#000000ad',
-//     podTextColor: '#fff',
-//     podText: 'Hover Pod'
-//   },
-// ]
 export const dropperData = [
   {
     id: 0,
@@ -366,89 +356,6 @@ export const forms = [
     },
   ],
 ];
-
-// export const teamMembers = [
-//   {
-//     image: '/UserMale.svg',
-//     name: 'Jack Reacher',
-//     jobTitle: 'Professional Hitman',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-//   {
-//     image: '/femaleUser.svg',
-//     name: 'David Mattias',
-//     jobTitle: 'General Manager',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-//   {
-//     image: '/UserMale.svg',
-//     name: 'Elias Leonard',
-//     jobTitle: 'Head of Technology',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-//   {
-//     image: '/femaleUser.svg',
-//     name: 'Megan Kimberly',
-//     jobTitle: 'Art Director',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-//   {
-//     image: '/UserMale.svg',
-//     name: 'Johnny Reb',
-//     jobTitle: 'Computerist',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-//   {
-//     image: '/femaleUser.svg',
-//     name: 'Paran John',
-//     jobTitle: 'Senior Developer',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-//   {
-//     image: '/UserMale.svg',
-//     name: 'Elias Leonard',
-//     jobTitle: 'Head of Technology',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-//   {
-//     image: '/femaleUser.svg',
-//     name: 'Megan Kimberly',
-//     jobTitle: 'Art Director',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-//   {
-//     image: '/UserMale.svg',
-//     name: 'David Mattias',
-//     jobTitle: 'General Manager',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-//   {
-//     image: '/femaleUser.svg',
-//     name: 'Elias Leonard',
-//     jobTitle: 'Head of Technology',
-//     facebook: 'https://www.facebook.com',
-//     twitter: 'https://twitter.com',
-//     linkedin: 'https://www.linkedin.com',
-//   },
-// ];
 
 export const teamMembers = [
   {
@@ -593,3 +500,147 @@ export const esliderData: any = [
     text: 'Musical Chairs.',
   },
 ];
+
+export const tabsData: any = {
+  columns: [
+    {
+      id: 0,
+      img: logo,
+      title: 'Free',
+      subTitle: 'Try Ai Tools',
+      pricing: {
+        price: '$0',
+        info: 'Try Ai Tools for free',
+      },
+      button: {
+        href: 'https://elliotrichardson.com',
+        text: 'Learn more',
+        target: true,
+      },
+      specs: [
+        'Chat on web',
+        'desktop, and mobile',
+        'Search the web',
+        'create files, and run code',
+        'Memory across conversations',
+        'Connect your apps and tools',
+        'Create Artifacts',
+        'Ai Tools Design, Slides, Docs',
+      ],
+    },
+    {
+      id: 1,
+      img: logo,
+      title: 'Pro',
+      subTitle: 'For everyday work',
+      pricing: {
+        price: '$20',
+        info: 'Per month with annual subscription discount ($200 billed up front). $20 if billed monthly.',
+      },
+      button: {
+        href: 'https://elliotrichardson.com',
+        text: 'Learn more',
+        target: true,
+      },
+      specs: [
+        'Chat on web',
+        'desktop, and mobile',
+        'Search the web',
+        'create files, and run code',
+        'Memory across conversations',
+        'Connect your apps and tools',
+        'Create Artifacts',
+        'Ai tools Design, Slides, Docs',
+        'Ai tools Science',
+        'Ai tools in Chrome and Microsoft 365',
+        'More Ai Tools models',
+      ],
+    },
+    {
+      id: 2,
+      img: logo,
+      title: 'Max',
+      subTitle: 'For people who work with Ai tools all day',
+      pricing: {
+        price: 'From $100',
+        info: 'Per Month',
+      },
+      button: {
+        href: 'https://elliotrichardson.com',
+        text: 'Learn more',
+        target: true,
+      },
+      specs: [
+        'Choose 5x or 20x more usage than Pro*',
+        'Chat on web',
+        'desktop, and mobile',
+        'Search the web',
+        'create files, and run code',
+        'Memory across conversations',
+        '$100 to $200/month in API credits to build on the Ai Tools Platform',
+      ],
+    },
+  ],
+  profile: [
+    {
+      id: 0,
+      img: logo,
+      title: 'Rider profile',
+      subTitle: 'Miles for the week',
+      miles: '37 mi',
+      speed: '12.6 mph',
+      copy: "You're doing great for the week at 37 miles clocked in at an average speed of 12.6 miles per hour. You are in the top 20% of riders in your age bracket.",
+      button: {
+        href: 'https://elliotrichardson.com',
+        text: 'Learn more',
+      },
+    },
+    {
+      id: 1,
+      img: logo,
+      title: 'Rider Stats',
+      subTitle: 'Stats for the month',
+      miles: '337 mi',
+      speed: '15.6 mph',
+      copy: "You're killing it for the month at 337 miles for the month and your average speed is at 15.6 miles per hour. You're in the top 10% of other riders in your age group.",
+      button: {
+        href: 'https://elliotrichardson.com',
+        text: 'Learn more',
+      },
+    },
+  ],
+  gear: [
+    {
+      id: 0,
+      img: snowboardPic,
+      title: 'Johnny Reb',
+      subTitle: 'Gear locker',
+      specs: [
+        'Snowboard: Ride Vantum',
+        'Bindings: Union Force',
+        'Boots: K2 Thoraxis',
+        'Jacket: Jones Storm Rider',
+      ],
+      button: {
+        href: 'https://elliotrichardson.com',
+        text: 'Check gear',
+      },
+    },
+    {
+      id: 1,
+      img: skiPic,
+      title: 'Stormy Weather',
+      subTitle: 'Gear locker',
+      specs: [
+        'Skis: Salomon Shred 106mm',
+        'Bindings: Marker Jester',
+        'Boots: Salomon A line',
+        'Poles: Black Diamond Retract',
+      ],
+      button: {
+        href: 'https://elliotrichardson.com',
+        text: 'Check gear',
+      },
+    },
+  ],
+};

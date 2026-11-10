@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`transition duration-500 ease-in-out ${globalStore.isDarkMode ? 'dark' : ''} dark:bg-black dark:text-white`"
+    :class="`text-neutral-900 transition duration-500 ease-in-out ${globalStore.isDarkMode ? 'dark' : ''} dark:bg-black dark:text-white`"
   >
     <Nav />
     <div
