@@ -1,5 +1,5 @@
 <template>
-  <PageTitle title="Er Tabs Component" gradient class="py-4" />
+  <PageTitle title="Er Tabs" gradient class="py-4" />
   <Tabs
     class="py-10"
     :data="tabHeaderData"
