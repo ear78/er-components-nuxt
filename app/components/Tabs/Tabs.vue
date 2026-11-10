@@ -72,7 +72,7 @@ onMounted(() => {
   selectedTab.value = props?.defaultTab ?? 0;
 
   if (tabsComponent.value) {
-    const delay = 1000;
+    const delay = 50;
     let containerWidth: number | undefined;
     resizeObserver.value = new ResizeObserver((entries) => {
       if (entries && containerWidth !== entries?.[0]?.contentRect.width) {
@@ -143,7 +143,9 @@ watch(
   (newValue, oldValue) => {
     if (newValue !== oldValue) {
       // Wait for selectedTab to be updated
-      tabHeight();
+      setTimeout(() => {
+        tabHeight();
+      }, 10);
     }
   },
   { immediate: true },

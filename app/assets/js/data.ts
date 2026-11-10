@@ -8,6 +8,8 @@ import stripes from '/img/stripes.webp';
 import chairs from '/img/chairs.webp';
 import echoTowerSml from '@/assets/img/echoTower-sml.jpg';
 import ErTabs from '/img/tabs-screenshot.webp';
+import skiPic from '/img/ski-pic.webp';
+import snowboardPic from '/img/snowboard-pic.webp';
 // import jailSml from '../img/jail-sml.jpg'
 // import stairwaySml from '../img/stairway-sml.jpg'
 import stripesSml from '@/assets/img/stripes-sml.jpg';
@@ -548,9 +550,9 @@ export const tabsData: any = {
         'Memory across conversations',
         'Connect your apps and tools',
         'Create Artifacts',
-        'Claude Design, Slides, Docs',
-        'Claude Science',
-        'Claude in Chrome and Microsoft 365',
+        'Ai tools Design, Slides, Docs',
+        'Ai tools Science',
+        'Ai tools in Chrome and Microsoft 365',
         'More Ai Tools models',
       ],
     },
@@ -586,43 +588,59 @@ export const tabsData: any = {
       title: 'Rider profile',
       subTitle: 'Miles for the week',
       miles: '37 mi',
-      speed: '5.6 mph',
-      copy: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, numquam possimus esse et veniam saepe cumque neque deleniti porro laudantium! Quaerat maiores eligendi possimus velit dolor, architecto sed asperiores corporis.',
+      speed: '12.6 mph',
+      copy: "You're doing great for the week at 37 miles clocked in at an average speed of 12.6 miles per hour. You are in the top 20% of riders in your age bracket.",
+      button: {
+        href: 'https://elliotrichardson.com',
+        text: 'Learn more',
+      },
     },
     {
       id: 1,
       img: logo,
       title: 'Rider Stats',
       subTitle: 'Stats for the month',
-      miles: '37 mi',
-      speed: '5.6 mph',
-      copy: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, numquam possimus esse et veniam saepe cumque neque deleniti porro laudantium! Quaerat maiores eligendi possimus velit dolor, architecto sed asperiores corporis.',
+      miles: '337 mi',
+      speed: '15.6 mph',
+      copy: "You're killing it for the month at 337 miles for the month and your average speed is at 15.6 miles per hour. You're in the top 10% of other riders in your age group.",
+      button: {
+        href: 'https://elliotrichardson.com',
+        text: 'Learn more',
+      },
     },
   ],
   gear: [
     {
       id: 0,
-      img: echoTower,
-      title: 'Gear profile',
-      subTitle: 'Gear for the week',
+      img: snowboardPic,
+      title: 'Johnny Reb',
+      subTitle: 'Gear locker',
       specs: [
-        'Chat on web',
-        'desktop, and mobile',
-        'Search the web',
-        'create files, and run code',
+        'Snowboard: Ride Vantum',
+        'Bindings: Union Force',
+        'Boots: K2 Thoraxis',
+        'Jacket: Jones Storm Rider',
       ],
+      button: {
+        href: 'https://elliotrichardson.com',
+        text: 'Check gear',
+      },
     },
     {
       id: 1,
-      img: stairway,
-      title: 'Gear Stats',
-      subTitle: 'Gear for the month',
+      img: skiPic,
+      title: 'Stormy Weather',
+      subTitle: 'Gear locker',
       specs: [
-        'Chat on web',
-        'desktop, and mobile',
-        'Search the web',
-        'create files, and run code',
+        'Skis: Salomon Shred 106mm',
+        'Bindings: Marker Jester',
+        'Boots: Salomon A line',
+        'Poles: Black Diamond Retract',
       ],
+      button: {
+        href: 'https://elliotrichardson.com',
+        text: 'Check gear',
+      },
     },
   ],
 };

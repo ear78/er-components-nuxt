@@ -12,10 +12,10 @@
       :selected-tab="selectedTab"
     >
       <template v-if="key === 'columns'">
-        <div class="grid grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
           <div
             v-for="content in tab"
-            class="p-10 border border-neutral-200 rounded-lg shadow-md grid grid-rows-subgrid row-span-5 gap-8"
+            class="p-6 border border-neutral-200 rounded-lg shadow-md grid grid-rows-subgrid row-span-5 lg:p-10 gap-6"
           >
             <img
               :src="content.img"
@@ -34,10 +34,12 @@
                 {{ content.pricing.info }}
               </p>
             </div>
-            <Button v-if="content?.button">{{ content.button.text }}</Button>
+            <Button :href="content.button.href">{{
+              content.button.text
+            }}</Button>
             <ul
               v-if="content?.specs"
-              class="mt-4 pt-10 border-t border-neutral-200"
+              class="mt-4 pt-9 border-t border-neutral-200"
             >
               <li v-for="spec in content.specs" class="flex gap-4 items-center">
                 <FontAwesomeIcon
@@ -55,12 +57,14 @@
         </div>
       </template>
       <template v-if="key === 'profile'">
-        <div class="grid grid-cols-2 gap-2">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div
             v-for="content in tab"
-            class="border border-neutral-200 shadow-md rounded-lg p-0.5 text-neutral-500"
+            class="border border-neutral-200 shadow-md rounded-lg p-0.5 text-neutral-500 grid grid-rows-1"
           >
-            <div class="border border-neutral-200 rounded-lg p-10">
+            <div
+              class="border border-neutral-200 rounded-lg p-5 lg:p-10 grid grid-rows-[11%_11%_10%_8%_12%_25%_23%]"
+            >
               <img
                 :src="content.img"
                 :alt="content.title"
@@ -71,19 +75,22 @@
               </h2>
               <p class="mb-1">{{ content.subTitle }}</p>
               <p class="text-sm">- {{ content.miles }}</p>
-              <p class="text-sm">- {{ content.speed }}</p>
-              <p class="text-sm pt-2">{{ content.copy }}</p>
+              <p class="text-sm pb-2">- {{ content.speed }}</p>
+              <p class="text-sm">{{ content.copy }}</p>
+              <Button :href="content.button.href" target class="mt-6">{{
+                content.button.text
+              }}</Button>
             </div>
           </div>
         </div>
       </template>
       <template v-if="key === 'gear'">
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-8">
           <div v-for="content in tab" class="flex flex-col gap-4">
             <NuxtImg
               :src="content.img"
               :alt="content.title"
-              class="rounded-lg"
+              class="rounded-lg aspect-video"
             />
             <div class="flex flex-col">
               <h2 class="text-2xl font-bold">{{ content.title }}</h2>
@@ -99,6 +106,9 @@
                   {{ spec }}
                 </li>
               </ul>
+              <Button :href="content.button.href" target class="mt-6">{{
+                content.button.text
+              }}</Button>
             </div>
           </div>
         </div>
@@ -123,7 +133,7 @@ const tabHeaderData = [
   },
   {
     id: 1,
-    name: 'Accessories',
+    name: 'Profile',
   },
   { id: 2, name: 'Gear' },
 ];
