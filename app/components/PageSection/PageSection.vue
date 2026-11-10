@@ -6,7 +6,7 @@
       </Heading>
       <p class="text-neutral-600">
         The&nbsp;
-        <b class="text-neutral-900">
+        <b class="text-neutral-900 dark:text-neutral-500">
           {{ data.component }}
           &nbsp;Component&nbsp;
         </b>

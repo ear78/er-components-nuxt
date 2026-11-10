@@ -2,7 +2,7 @@
   <div ref="tabsComponent" class="tabs-component">
     <div :class="['tabs-wrapper mb-8', headerAlignment]">
       <header
-        class="p-0.5 border border-transparent rounded-lg inline-flex items-center justify-center gap-3 bg-neutral-200"
+        class="p-0.5 border border-transparent rounded-lg inline-flex items-center justify-center gap-3 bg-neutral-200 dark:bg-neutral-900 transition-all duration-500 ease-in-out"
       >
         <button
           v-for="(tab, index) in data"
