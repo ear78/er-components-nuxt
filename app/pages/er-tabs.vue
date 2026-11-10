@@ -63,7 +63,7 @@
             class="border border-neutral-200 shadow-md rounded-lg p-0.5 text-neutral-500 grid grid-rows-1"
           >
             <div
-              class="border border-neutral-200 rounded-lg p-5 lg:p-10 grid grid-rows-[11%_11%_10%_8%_12%_25%_23%]"
+              class="border border-neutral-200 rounded-lg p-5 lg:p-10 grid grid-rows-[11%_11%_10%_8%_12%_33%_minmax(15%, 40px)]"
             >
               <img
                 :src="content.img"
@@ -76,10 +76,10 @@
               <p class="mb-1">{{ content.subTitle }}</p>
               <p class="text-sm">- {{ content.miles }}</p>
               <p class="text-sm pb-2">- {{ content.speed }}</p>
-              <p class="text-sm">{{ content.copy }}</p>
-              <Button :href="content.button.href" target class="mt-6">{{
-                content.button.text
-              }}</Button>
+              <p class="text-sm pb-2">{{ content.copy }}</p>
+              <Button :href="content.button.href" target>
+                {{ content.button.text }}
+              </Button>
             </div>
           </div>
         </div>
