@@ -4,12 +4,12 @@
       class="flex flex-col-reverse gap-4 HomeContainer sm:flex-row border border-neutral-200 p-1 rounded-lg dark:border-neutral-700"
     >
       <div
-        class="Left p-5 sm:w-1/2 flex flex-col justify-center border border-neutral-200 rounded-lg bg-neutral-100 dark:bg-neutral-800 dark:border-transparent transition duration-500"
+        class="Left p-5 sm:w-1/2 flex flex-col justify-center border border-neutral-200 rounded-lg bg-neutral-100 dark:text-neutral-600 dark:bg-neutral-900 dark:border-transparent transition duration-500"
       >
-        <span>Welcome to ER Components! </span>
+        <span class="dark:text-white">Welcome to ER Components! </span>
         {{ homeData.desc }}
         &nbsp;
-        <span>{{ homeData.components }}</span>
+        <span class="dark:text-neutral-500">{{ homeData.components }}</span>
         <div class="pt-3">
           <Button
             type="icon"

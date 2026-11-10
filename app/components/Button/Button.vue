@@ -6,10 +6,10 @@
     :style="{ ...sx }"
     :class="`Button ${primaryClass} ${secondaryClass} ${tertiaryClass} ${centeredClass} w-fit ${isDarkMode ? 'Dark' : ''}`"
   >
-    <a :href="href" :target="isTarget" rel="noreferrer">
+    <NuxtLink :to="href" :target="isTarget">
       <slot />
       <FontAwesomeIcon class="Arrow" :icon="faArrowRight" width-auto />
-    </a>
+    </NuxtLink>
   </button>
   <a
     v-else-if="type === 'icon'"

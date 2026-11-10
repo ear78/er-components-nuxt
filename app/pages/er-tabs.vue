@@ -15,12 +15,12 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
           <div
             v-for="content in tab"
-            class="p-6 border border-neutral-200 rounded-lg shadow-md grid grid-rows-subgrid row-span-5 lg:p-10 gap-6"
+            class="p-6 border border-neutral-200 rounded-lg shadow-md grid grid-rows-subgrid row-span-5 lg:p-10 gap-6 dark:bg-neutral-900 dark:border-neutral-900"
           >
             <img
               :src="content.img"
               :alt="content.title.text"
-              class="w-12 h-12 mb-2"
+              class="w-12 h-12 mb-2 dark:invert"
             />
             <div class="headings-grp">
               <h3 class="text-4xl font-semibold">{{ content.title }}</h3>
@@ -60,17 +60,19 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div
             v-for="content in tab"
-            class="border border-neutral-200 shadow-md rounded-lg p-0.5 text-neutral-500 grid grid-rows-1"
+            class="border border-neutral-200 shadow-md rounded-lg p-0.5 text-neutral-500 grid grid-rows-1 dark:bg-neutral-900 dark:text-neutral-200 dark:border-neutral-900"
           >
             <div
-              class="border border-neutral-200 rounded-lg p-5 lg:p-10 grid grid-rows-[11%_11%_10%_8%_12%_33%_minmax(15%, 40px)]"
+              class="border border-neutral-200 rounded-lg p-5 lg:p-10 grid grid-rows-[11%_11%_10%_8%_12%_33%_minmax(15%, 40px)] dark:border-neutral-700"
             >
               <img
                 :src="content.img"
                 :alt="content.title"
-                class="w-6 h-6 mb-2"
+                class="w-6 h-6 mb-2 dark:invert"
               />
-              <h2 class="font-bold text-2xl text-neutral-900">
+              <h2
+                class="font-bold text-2xl text-neutral-900 dark:text-neutral-500"
+              >
                 {{ content.title }}
               </h2>
               <p class="mb-1">{{ content.subTitle }}</p>
@@ -86,7 +88,10 @@
       </template>
       <template v-if="key === 'gear'">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-8">
-          <div v-for="content in tab" class="flex flex-col gap-4">
+          <div
+            v-for="content in tab"
+            class="flex flex-col gap-4 dark:bg-neutral-900 transition-all duration-500 ease-in-out p-0 dark:p-4 dark:rounded-lg"
+          >
             <NuxtImg
               :src="content.img"
               :alt="content.title"
