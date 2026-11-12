@@ -75,14 +75,15 @@ import DarkModeButton from '~/components/DarkModeButton/DarkModeButton.vue';
 import { useGlobalStore } from '~/stores/global';
 import logo from '@/assets/img/er-logo.svg?url';
 import { Routes } from '~/assets/js/constants/routes';
+import { useNavigation } from '~/composables/navigation';
 
 const globalStore = useGlobalStore();
 const isMenuActive = ref(false);
 const pathname = useRoute();
 const isActive = computed(() => (isMenuActive.value ? 'isActive' : ''));
+const { showNav } = useNavigation();
 
 const navRef = useTemplateRef('navRef');
-const showNav = ref(true);
 const dynamicNavClasses = computed(() => {
   return {
     '-translate-y-28': !showNav.value,
