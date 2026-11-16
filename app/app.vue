@@ -10,7 +10,7 @@
         <button
           v-if="hasFormData"
           @click="handleModalToggle"
-          class="cursor-pointer -top-8 absolute"
+          class="cursor-pointer -top-8 md:-top-10 absolute"
         >
           <FontAwesomeIcon :icon="faGrip" />
         </button>
