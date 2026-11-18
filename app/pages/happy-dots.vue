@@ -21,6 +21,10 @@ import { useGlobalStore } from '@/stores/global';
 import PageTitle from '~/components/PageTitle/PageTitle.vue';
 import { sectionData, happyData } from '~/assets/js/data';
 
+useHead({
+  title: 'Happy Dots',
+});
+
 const elementRefs = useTemplateRef<HTMLElement[]>('items');
 const globalStore = useGlobalStore();
 const pageSettings = globalStore.components[3];

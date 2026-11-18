@@ -1,7 +1,12 @@
 <template>
-  <button :aria-pressed="isActive" aria-label="Toggle menu"
-    @click="$emit('hamburgerClick')" :class="`Hamburger
-    HamburgerSlider ${styleActive} ${isDarkMode ? 'Dark' : ''}`" type="button">
+  <button
+    :aria-pressed="isActive"
+    aria-label="Toggle menu"
+    @click="$emit('hamburgerClick')"
+    :class="`Hamburger
+    HamburgerSlider ${styleActive} ${isDarkMode ? 'Dark' : ''}`"
+    type="button"
+  >
     <span class="HamburgerBox">
       <span class="HamburgerInner" />
     </span>
@@ -11,11 +16,11 @@
 <script setup lang="ts">
 const emit = defineEmits(['hamburgerClick']);
 const props = defineProps<{
-  isActive: boolean,
-  isDarkMode: boolean,
+  isActive: boolean;
+  isDarkMode: boolean;
 }>();
 
-const styleActive = computed(() => props.isActive ? 'isActive' : '');
+const styleActive = computed(() => (props.isActive ? 'isActive' : ''));
 </script>
 
 <style scoped>
@@ -41,7 +46,7 @@ const styleActive = computed(() => props.isActive ? 'isActive' : '');
 .Hamburger.isActive .HamburgerInner,
 .Hamburger.isActive .HamburgerInner::after,
 .Hamburger.isActive .HamburgerInner::before {
-  background-color: var(--primary-color);
+  background-color: var(--gray-700);
 }
 
 .HamburgerBox {
@@ -72,7 +77,7 @@ const styleActive = computed(() => props.isActive ? 'isActive' : '');
 
 .HamburgerInner::after,
 .HamburgerInner::before {
-  content: "";
+  content: '';
   display: block;
 }
 
@@ -87,7 +92,6 @@ const styleActive = computed(() => props.isActive ? 'isActive' : '');
 /* Dark Mode */
 .Hamburger {
   &.Dark {
-
     .HamburgerInner,
     .HamburgerInner::after,
     .HamburgerInner::before {
@@ -127,7 +131,7 @@ const styleActive = computed(() => props.isActive ? 'isActive' : '');
   transform: translate3d(0, -12px, 0) rotate(-90deg);
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   .Hamburger:hover {
     opacity: 0.7;
   }
@@ -137,7 +141,7 @@ const styleActive = computed(() => props.isActive ? 'isActive' : '');
   }
 }
 
-@media(min-width: 1024px) {
+@media (min-width: 1024px) {
   .Hamburger {
     display: none;
   }

@@ -16,4 +16,8 @@ import { esliderData } from '~/assets/js/data';
 
 const globalStore = useGlobalStore();
 const pageSettings = globalStore.components[5];
+
+useHead({
+  title: 'Slider',
+});
 </script>

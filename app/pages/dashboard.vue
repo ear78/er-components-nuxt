@@ -26,6 +26,10 @@
 import PageTitle from '~/components/PageTitle/PageTitle.vue';
 import { useGlobalStore } from '@/stores/global';
 
+useHead({
+  title: 'Dashboard',
+});
+
 const globalStore = useGlobalStore();
 const components = globalStore.components;
 

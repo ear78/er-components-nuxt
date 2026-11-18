@@ -134,6 +134,10 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { tabsData } from '~/assets/js/data';
 
+useHead({
+  title: 'Tabs',
+});
+
 const selectedTab = ref(0);
 
 const tabHeaderData = [

@@ -16,6 +16,8 @@ import { useGlobalStore } from '@/stores/global';
 
 const globalStore = useGlobalStore();
 const pageSettings = globalStore.components[2];
-</script>
 
-<style scoped></style>
+useHead({
+  title: 'Team Builder',
+});
+</script>

@@ -17,6 +17,10 @@
 import { useGlobalStore } from '@/stores/global';
 import { podData } from '~/assets/js/data';
 
+useHead({
+  title: 'Hover Pods',
+});
+
 const globalStore = useGlobalStore();
 const pageSettings = globalStore.components[1];
 </script>

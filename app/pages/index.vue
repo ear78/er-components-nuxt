@@ -40,21 +40,14 @@
 </template>
 
 <script setup lang="ts">
-import { useGlobalStore } from '#imports';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import {
-  faAngleRight,
-  faArrowPointer,
-  faArrowRight,
-  faLink,
-  faUpRightFromSquare,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { pageSectionData, homeData } from '~/assets/js/data';
 import PageSection from '~/components/PageSection/PageSection.vue';
 import PageTitle from '~/components/PageTitle/PageTitle.vue';
 
-const globalStore = useGlobalStore();
+useHead({
+  title: 'Home',
+});
 </script>
 
 <style scoped>

@@ -10,7 +10,7 @@
         <button
           v-if="hasFormData"
           @click="handleModalToggle"
-          class="cursor-pointer -top-8 absolute"
+          class="cursor-pointer -top-8 md:-top-10 absolute"
         >
           <FontAwesomeIcon :icon="faGrip" />
         </button>
@@ -39,6 +39,20 @@ import { PathName } from '~/assets/js/constants/routes';
 
 const location = useRoute();
 const globalStore = useGlobalStore();
+
+useHead({
+  htmlAttrs: {
+    lang: 'en',
+  },
+  meta: [
+    {
+      name: 'description',
+      content: computed(() => `An Er Components project`),
+    },
+  ],
+  titleTemplate: (title) =>
+    title ? `${title} - Er Components` : 'Er Components',
+});
 
 const selectedFormData = computed(() => {
   if (

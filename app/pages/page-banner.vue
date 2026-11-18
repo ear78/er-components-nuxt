@@ -23,6 +23,10 @@ import { bannerImgWebp, bannerImgWebpSm } from '@/assets/js/data';
 import { useGlobalStore } from '@/stores/global';
 const globalStore = useGlobalStore();
 const settings = globalStore.components[0]?.settings;
+
+useHead({
+  title: 'Banner',
+});
 </script>
 
 <style scoped></style>
