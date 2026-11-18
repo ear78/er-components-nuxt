@@ -44,6 +44,12 @@ useHead({
   htmlAttrs: {
     lang: 'en',
   },
+  meta: [
+    {
+      name: 'description',
+      content: computed(() => `An Er Components project`),
+    },
+  ],
   titleTemplate: (title) =>
     title ? `${title} - Er Components` : 'Er Components',
 });
