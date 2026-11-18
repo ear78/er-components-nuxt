@@ -25,4 +25,8 @@
 <script setup lang="ts">
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { dropperData } from '~/assets/js/data';
+
+useHead({
+  title: 'Dropper',
+});
 </script>

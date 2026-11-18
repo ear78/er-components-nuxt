@@ -40,6 +40,14 @@ import { PathName } from '~/assets/js/constants/routes';
 const location = useRoute();
 const globalStore = useGlobalStore();
 
+useHead({
+  htmlAttrs: {
+    lang: 'en',
+  },
+  titleTemplate: (title) =>
+    title ? `${title} - Er Components` : 'Er Components',
+});
+
 const selectedFormData = computed(() => {
   if (
     !componentFormData ||

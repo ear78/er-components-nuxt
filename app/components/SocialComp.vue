@@ -1,8 +1,13 @@
 <template>
   <div
-    class='flex items-center gap-1 transition duration-150 ease-out justify-around group'>
+    class="flex items-center gap-1 transition duration-150 ease-out justify-around group"
+  >
     <template v-for="item in socialItems" :key="item.platform">
-      <SocialIcon :path="item.path" :target="true">
+      <SocialIcon
+        :path="item.path"
+        :target="true"
+        :aria-label="`${item.platform} icon link`"
+      >
         <FontAwesomeIcon class="w-6.5 text-2xl" :icon="item.icon" />
       </SocialIcon>
     </template>
@@ -10,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import {
   faGithubSquare,
   faInstagramSquare,
@@ -48,11 +53,10 @@ const socialItems = [
   display: flex;
   align-items: center;
   justify-content: space-around;
-  transition: all .14s ease-out;
+  transition: all 0.14s ease-out;
 }
 
 .SocialComp i {
   font-size: 1.65em;
 }
-
 </style>
